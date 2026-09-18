@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BCRP · Plataforma educativa — Departamento de Política de Inversión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF1F4; --surface:#FFFFFF; --surface-2:#F6F8FA; --line:#D8DEE6; --line-soft:#E6EBF0;
+  --text:#18212E; --text-2:#55637A; --text-3:#7C889B;
+  --ink:#10192A; --ink-2:#1B2739; --ink-line:#2C3A50; --on-ink:#E8EDF4; --on-ink-2:#93A2B8;
+  --garnet:#8E1F2F; --garnet-2:#B02C3E; --garnet-soft:#F4E3E5;
+  --gold:#B8862F; --gold-soft:#F6EEDC;
+  --teal:#0F6B70; --teal-soft:#DFEEEE;
+  --green:#2F6B45; --amber:#9A6B12; --danger:#9B2226;
+  --shadow:0 1px 2px rgba(16,25,42,.06), 0 8px 24px -16px rgba(16,25,42,.28);
+  --radius:6px;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C121D; --surface:#141D2C; --surface-2:#18222F; --line:#2A3648; --line-soft:#212C3C;
+    --text:#E7EDF5; --text-2:#A3B1C6; --text-3:#7F8EA5;
+    --ink:#0A101A; --ink-2:#141D2C; --ink-line:#26334A; --on-ink:#E7EDF5; --on-ink-2:#8E9DB4;
+    --garnet:#D2596A; --garnet-2:#E0768A; --garnet-soft:#2A1A20;
+    --gold:#D6A84E; --gold-soft:#2A2315; --teal:#4FB3B8; --teal-soft:#13282A;
+    --green:#6FBF8E; --amber:#D8A53F; --danger:#E3707A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C121D; --surface:#141D2C; --surface-2:#18222F; --line:#2A3648; --line-soft:#212C3C;
+  --text:#E7EDF5; --text-2:#A3B1C6; --text-3:#7F8EA5;
+  --ink:#0A101A; --ink-2:#141D2C; --ink-line:#26334A; --on-ink:#E7EDF5; --on-ink-2:#8E9DB4;
+  --garnet:#D2596A; --garnet-2:#E0768A; --garnet-soft:#2A1A20;
+  --gold:#D6A84E; --gold-soft:#2A2315; --teal:#4FB3B8; --teal-soft:#13282A;
+  --green:#6FBF8E; --amber:#D8A53F; --danger:#E3707A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--text); font-family:var(--sans);
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+button{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:3px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important}}
+
+/* ---------- Shell ---------- */
+.shell{display:flex; min-height:100vh}
+.sidebar{
+  width:256px; flex:0 0 256px; background:var(--ink); color:var(--on-ink);
+  display:flex; flex-direction:column; position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.brand{padding:26px 22px 20px; border-bottom:1px solid var(--ink-line)}
+.brand-mark{display:flex; align-items:baseline; gap:10px}
+.brand-mark .sig{font-family:var(--serif); font-size:30px; font-weight:600; letter-spacing:.01em; color:#fff}
+.brand-mark .rule{flex:1; height:1px; background:var(--gold); opacity:.7}
+.brand-sub{margin-top:8px; font-size:12.5px; line-height:1.45; color:var(--on-ink-2)}
+.brand-sub b{display:block; color:var(--on-ink); font-weight:500}
+.nav{padding:16px 12px; flex:1}
+.nav-title{font-size:11.5px; color:var(--on-ink-2); padding:0 10px 8px; letter-spacing:.02em}
+.nav a{
+  display:grid; grid-template-columns:22px 1fr; gap:10px; align-items:baseline;
+  padding:11px 10px; text-decoration:none; border-radius:var(--radius);
+  color:var(--on-ink); border-left:2px solid transparent; margin-bottom:2px;
+}
+.nav a .n{font-family:var(--serif); font-size:15px; color:var(--on-ink-2)}
+.nav a .t{font-size:15px}
+.nav a .d{grid-column:2; font-size:12px; color:var(--on-ink-2); line-height:1.35}
+.nav a:hover{background:var(--ink-2)}
+.nav a.active{background:var(--ink-2); border-left-color:var(--garnet-2)}
+.nav a.active .n{color:var(--gold)}
+.nav-foot{padding:14px 22px 20px; border-top:1px solid var(--ink-line); font-size:12px; color:var(--on-ink-2)}
+.nav-foot button{background:none;border:1px solid var(--ink-line); color:var(--on-ink-2); padding:5px 9px; border-radius:4px; cursor:pointer; font-size:12px}
+.nav-foot button:hover{color:var(--on-ink); border-color:var(--on-ink-2)}
+.main{flex:1; min-width:0; display:flex; flex-direction:column}
+.topbar{display:none}
+.content{flex:1; padding:36px 44px 72px; max-width:1180px; width:100%}
+.page{display:none}
+.page.on{display:block}
+
+/* ---------- Typography ---------- */
+h1,h2,h3,h4{margin:0; font-weight:500}
+h1{font-family:var(--serif); font-size:38px; line-height:1.15; letter-spacing:-.01em}
+h2{font-family:var(--serif); font-size:26px; line-height:1.2}
+h3{font-size:17px; font-weight:600; letter-spacing:-.005em}
+h4{font-size:14px; font-weight:600; color:var(--text-2)}
+p{margin:0 0 14px}
+.lede{font-family:var(--serif); font-size:19px; line-height:1.6; color:var(--text-2); max-width:62ch}
+.prose{max-width:68ch}
+.prose p{color:var(--text-2)}
+.prose strong{color:var(--text); font-weight:600}
+.small{font-size:13px; color:var(--text-2)}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.page-head{margin-bottom:28px; padding-bottom:20px; border-bottom:1px solid var(--line)}
+.crumb{font-size:13px; color:var(--text-3); margin-bottom:10px}
+.crumb a{color:var(--teal); text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+/* ---------- Home hero ---------- */
+.hero{background:var(--ink); color:var(--on-ink); border-radius:8px; padding:40px 40px 34px; position:relative; overflow:hidden}
+.hero h1{color:#fff; font-size:42px; max-width:18ch}
+.hero .eyebrow{font-family:var(--serif); font-size:17px; color:var(--gold); margin-bottom:14px}
+.hero p{color:var(--on-ink-2); max-width:56ch; margin-top:14px}
+.reserves{margin-top:30px; border-top:1px solid var(--ink-line); padding-top:22px}
+.reserves .rlabel{display:flex; justify-content:space-between; font-size:12.5px; color:var(--on-ink-2); margin-bottom:9px}
+.rbar{display:flex; height:30px; border-radius:3px; overflow:hidden; background:var(--ink-2)}
+.rbar span{height:100%; width:0; transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.rlegend{display:flex; flex-wrap:wrap; gap:16px; margin-top:12px; font-size:12.5px; color:var(--on-ink-2)}
+.rlegend i{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:6px}
+.hero-note{margin-top:14px; font-size:12px; color:var(--on-ink-2); opacity:.8}
+
+/* ---------- Cards / grids ---------- */
+.grid{display:grid; gap:18px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--text-2); font-size:14px; margin-bottom:0}
+a.card{display:block; text-decoration:none; cursor:pointer}
+a.card:hover{border-color:var(--garnet); box-shadow:var(--shadow)}
+.module-card{position:relative; padding-top:22px}
+.module-card .tag{font-size:12px; color:var(--teal); margin-bottom:6px}
+.module-card .topics{margin:14px 0 0; padding:0; list-style:none; font-size:13px; color:var(--text-2)}
+.module-card .topics li{padding:3px 0 3px 14px; position:relative}
+.module-card .topics li::before{content:""; position:absolute; left:0; top:12px; width:6px; height:1px; background:var(--gold)}
+.pbar{height:4px; background:var(--line-soft); border-radius:2px; overflow:hidden; margin-top:16px}
+.pbar i{display:block; height:100%; background:var(--teal)}
+.pmeta{display:flex; justify-content:space-between; font-size:12px; color:var(--text-3); margin-top:7px}
+
+/* flow strip on home */
+.flow{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
+.flow a{padding:18px 18px 20px; text-decoration:none; border-right:1px solid var(--line-soft); display:block}
+.flow a:last-child{border-right:none}
+.flow a:hover{background:var(--surface-2)}
+.flow .step{font-family:var(--serif); font-size:15px; color:var(--gold)}
+.flow h3{margin:6px 0 5px}
+.flow p{font-size:13px; color:var(--text-2); margin:0}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex; align-items:center; gap:8px; background:var(--garnet); color:#fff; border:1px solid var(--garnet);
+  padding:9px 16px; border-radius:var(--radius); cursor:pointer; font-size:14px; font-weight:500; text-decoration:none}
+.btn:hover{background:var(--garnet-2); border-color:var(--garnet-2)}
+.btn.ghost{background:transparent; color:var(--text); border-color:var(--line)}
+.btn.ghost:hover{background:var(--surface-2); border-color:var(--text-3)}
+.btn.quiet{background:transparent; color:var(--teal); border-color:transparent; padding-left:0}
+.btn[disabled]{opacity:.45; cursor:not-allowed}
+.btn-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+
+/* ---------- Lessons ---------- */
+.lesson-layout{display:grid; grid-template-columns:230px minmax(0,1fr); gap:32px; align-items:start}
+.lesson-list{position:sticky; top:24px; border-left:1px solid var(--line); padding-left:0}
+.lesson-list button{display:block; width:100%; text-align:left; background:none; border:none; border-left:2px solid transparent;
+  padding:9px 12px; cursor:pointer; font-size:13.5px; color:var(--text-2); line-height:1.35; margin-left:-1px}
+.lesson-list button:hover{color:var(--text)}
+.lesson-list button.active{border-left-color:var(--garnet); color:var(--text); font-weight:500}
+.lesson-list button .done{color:var(--green); font-size:12px}
+.lesson-body{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:32px 34px}
+.lesson-body h2{margin-bottom:6px}
+.lesson-kicker{font-size:13px; color:var(--text-3); margin-bottom:18px}
+.keybox{background:var(--surface-2); border:1px solid var(--line-soft); border-left:2px solid var(--gold); border-radius:4px; padding:14px 18px; margin:20px 0}
+.keybox h4{margin-bottom:8px; color:var(--text)}
+.keybox ul{margin:0; padding-left:18px; font-size:14px; color:var(--text-2)}
+.keybox li{margin-bottom:5px}
+.formula{font-family:var(--mono); font-size:14px; background:var(--surface-2); border:1px solid var(--line-soft); border-radius:4px;
+  padding:12px 14px; margin:16px 0; overflow-x:auto; color:var(--text)}
+.widget{border:1px solid var(--line); border-radius:var(--radius); padding:18px; margin:22px 0; background:var(--surface)}
+.widget-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap}
+.widget-head h4{color:var(--text); font-size:14px}
+.widget-head .hint{font-size:12.5px; color:var(--text-3)}
+.controls{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); margin-top:14px}
+.ctrl label{display:flex; justify-content:space-between; font-size:13px; color:var(--text-2); margin-bottom:5px}
+.ctrl label b{font-family:var(--mono); font-weight:500; color:var(--text)}
+input[type=range]{width:100%; accent-color:var(--garnet)}
+input[type=number],input[type=text],textarea,select{
+  width:100%; background:var(--surface); color:var(--text); border:1px solid var(--line);
+  border-radius:4px; padding:8px 10px; font-family:var(--sans); font-size:14px}
+textarea{min-height:92px; resize:vertical; line-height:1.5}
+.readouts{display:flex; flex-wrap:wrap; gap:22px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft)}
+.readout .k{font-size:12px; color:var(--text-3)}
+.readout .v{font-family:var(--mono); font-size:19px; color:var(--text)}
+.chart-wrap{width:100%; overflow-x:auto}
+svg.chart{display:block; width:100%; height:auto; min-width:300px}
+.chart text{font-family:var(--sans); fill:var(--text-3); font-size:11px}
+.chart .axis{stroke:var(--line); stroke-width:1}
+.chart .gridline{stroke:var(--line-soft); stroke-width:1}
+.chart .ser1{stroke:var(--garnet); fill:none; stroke-width:2}
+.chart .ser2{stroke:var(--teal); fill:none; stroke-width:2; stroke-dasharray:5 4}
+.chart .ser3{stroke:var(--gold); fill:none; stroke-width:2}
+.chart .dot{fill:var(--garnet)}
+.chart .lab{fill:var(--text-2); font-size:11.5px}
+
+/* check questions */
+.check{border:1px solid var(--line); border-left:2px solid var(--teal); border-radius:4px; padding:18px; margin:24px 0 0; background:var(--surface-2)}
+.check .q{font-size:15px; margin-bottom:12px}
+.opts{display:grid; gap:8px}
+.opt{display:flex; gap:10px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:4px;
+  padding:10px 12px; cursor:pointer; font-size:14px; text-align:left; width:100%}
+.opt:hover{border-color:var(--teal)}
+.opt.ok{border-color:var(--green); background:color-mix(in srgb, var(--green) 10%, var(--surface))}
+.opt.no{border-color:var(--danger); background:color-mix(in srgb, var(--danger) 10%, var(--surface))}
+.opt .mk{font-family:var(--mono); color:var(--text-3)}
+.feedback{margin-top:12px; font-size:14px; color:var(--text-2); border-top:1px solid var(--line-soft); padding-top:12px}
+.feedback b{color:var(--text)}
+.lesson-nav{display:flex; justify-content:space-between; margin-top:28px; padding-top:20px; border-top:1px solid var(--line)}
+
+/* ---------- Practice ---------- */
+.level-row{display:grid; gap:14px}
+.level{display:grid; grid-template-columns:54px minmax(0,1fr) auto; gap:18px; align-items:center;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; text-align:left; cursor:pointer; width:100%}
+.level:hover{border-color:var(--garnet)}
+.level .lv{font-family:var(--serif); font-size:30px; color:var(--garnet); text-align:center; line-height:1}
+.level h3{margin-bottom:3px}
+.level p{font-size:13px; color:var(--text-2); margin:0}
+.level .score{font-family:var(--mono); font-size:13px; color:var(--text-2); text-align:right; white-space:nowrap}
+.level .score b{display:block; font-size:20px; color:var(--text); font-weight:500}
+.level[data-locked="1"]{opacity:.55; cursor:not-allowed}
+.stat-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:26px}
+.stat{background:var(--surface); padding:16px 18px}
+.stat .k{font-size:12px; color:var(--text-3)}
+.stat .v{font-family:var(--mono); font-size:24px; margin-top:2px}
+.quiz-head{display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; flex-wrap:wrap}
+.qprog{flex:1; min-width:160px; height:5px; background:var(--line-soft); border-radius:3px; overflow:hidden}
+.qprog i{display:block; height:100%; background:var(--garnet); transition:width .3s}
+.quiz-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px 30px}
+.qtype{font-size:12px; color:var(--teal); margin-bottom:8px}
+.qtext{font-size:19px; font-family:var(--serif); line-height:1.4; margin-bottom:18px}
+.numeric-row{display:flex; gap:10px; align-items:center; max-width:340px}
+.result-hero{text-align:center; padding:26px 0 8px}
+.result-hero .big{font-family:var(--serif); font-size:64px; line-height:1; color:var(--garnet)}
+.weak{display:grid; gap:8px; margin-top:8px}
+.weak .row{display:grid; grid-template-columns:minmax(120px,1fr) 1fr 48px; gap:12px; align-items:center; font-size:13.5px}
+.weak .track{height:6px; background:var(--line-soft); border-radius:3px; overflow:hidden}
+.weak .track i{display:block; height:100%; background:var(--gold)}
+
+/* ---------- Research / LEO ---------- */
+.leo-layout{display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:24px; align-items:start}
+.leo{display:flex; flex-direction:column; height:min(72vh,680px); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.leo-top{display:flex; gap:12px; align-items:center; padding:14px 18px; border-bottom:1px solid var(--line); background:var(--surface-2)}
+.leo-avatar{width:38px; height:38px; border-radius:50%; background:var(--ink); color:var(--gold); display:grid; place-items:center;
+  font-family:var(--serif); font-size:18px; flex:0 0 38px}
+.leo-top .nm{font-weight:600; font-size:15px}
+.leo-top .st{font-size:12px; color:var(--text-3)}
+.leo-log{flex:1; overflow-y:auto; padding:22px; display:flex; flex-direction:column; gap:16px}
+.msg{max-width:78%; font-size:14.5px; line-height:1.55}
+.msg.user{align-self:flex-end; background:var(--ink); color:var(--on-ink); padding:11px 15px; border-radius:10px 10px 2px 10px}
+.msg.leo{align-self:flex-start; background:var(--surface-2); border:1px solid var(--line-soft); padding:13px 16px; border-radius:10px 10px 10px 2px}
+.msg.leo p{margin:0 0 9px; color:var(--text)}
+.msg.leo p:last-child{margin-bottom:0}
+.msg.leo ul{margin:0 0 9px; padding-left:18px}
+.src{margin-top:10px; padding-top:9px; border-top:1px solid var(--line); font-size:12px; color:var(--text-2)}
+.src a{color:var(--teal); text-decoration:none; border-bottom:1px dotted var(--teal)}
+.leo-ask{border-top:1px solid var(--line); padding:12px 16px; display:flex; gap:10px; align-items:flex-end; background:var(--surface)}
+.leo-ask textarea{min-height:44px; max-height:120px}
+.chips{display:flex; gap:8px; flex-wrap:wrap; padding:12px 16px 0}
+.chip{background:var(--surface-2); border:1px solid var(--line); border-radius:999px; padding:6px 13px; font-size:12.5px; cursor:pointer; color:var(--text-2)}
+.chip:hover{border-color:var(--teal); color:var(--text)}
+.doclist{display:grid; gap:10px}
+.doc{border:1px solid var(--line); border-radius:4px; padding:11px 13px; background:var(--surface); font-size:13px}
+.doc .t{font-weight:500; line-height:1.35}
+.doc .m{font-size:11.5px; color:var(--text-3); margin-top:3px; font-family:var(--mono)}
+.typing i{display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--text-3); margin-right:3px; animation:bl 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.18s} .typing i:nth-child(3){animation-delay:.36s}
+@keyframes bl{0%,60%,100%{opacity:.25} 30%{opacity:1}}
+
+/* ---------- Simulation ---------- */
+.steps{display:flex; gap:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:26px; background:var(--surface)}
+.steps button{flex:1; background:none; border:none; border-right:1px solid var(--line-soft); padding:14px 16px; cursor:pointer; text-align:left}
+.steps button:last-child{border-right:none}
+.steps button .s{font-family:var(--serif); font-size:14px; color:var(--text-3)}
+.steps button .l{font-size:14px; font-weight:500; display:block; margin-top:2px}
+.steps button.active{background:var(--ink)}
+.steps button.active .l{color:#fff} .steps button.active .s{color:var(--gold)}
+.steps button.done .s{color:var(--green)}
+.sc-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:14px}
+.sc{border:1px solid var(--line); border-radius:4px; padding:14px; background:var(--surface)}
+.sc .h{font-size:13px; font-weight:600; margin-bottom:6px}
+.sc p{font-size:13px; color:var(--text-2); margin:0}
+.sc .v{font-family:var(--mono); font-size:15px; color:var(--garnet)}
+.alloc-layout{display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:24px; align-items:start}
+.alloc-row{display:grid; grid-template-columns:minmax(150px,1.4fr) minmax(120px,2fr) 76px; gap:14px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line-soft)}
+.alloc-row .nm{font-size:14px}
+.alloc-row .nm .sub{font-size:11.5px; color:var(--text-3); font-family:var(--mono)}
+.alloc-row .pc{font-family:var(--mono); text-align:right; font-size:15px}
+.metric{display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--line-soft); font-size:13.5px}
+.metric .v{font-family:var(--mono); font-size:16px}
+.metric .v.warn{color:var(--danger)}
+.flag{font-size:12.5px; padding:7px 10px; border-radius:4px; margin-top:8px}
+.flag.ok{background:var(--teal-soft); color:var(--teal)}
+.flag.bad{background:var(--garnet-soft); color:var(--garnet)}
+.checkgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:9px}
+.cbx{display:flex; gap:9px; align-items:flex-start; border:1px solid var(--line); border-radius:4px; padding:10px 12px; font-size:13.5px; cursor:pointer; background:var(--surface)}
+.cbx input{margin-top:3px; accent-color:var(--garnet)}
+.cbx.sel{border-color:var(--garnet)}
+.donut-wrap{display:grid; place-items:center}
+
+/* ---------- misc ---------- */
+.notice{border:1px solid var(--line); border-left:2px solid var(--teal); background:var(--surface); border-radius:4px; padding:13px 16px; font-size:13px; color:var(--text-2); margin:18px 0}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:440px}
+th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line-soft)}
+th{font-size:12px; color:var(--text-3); font-weight:500}
+td.num,th.num{text-align:right; font-family:var(--mono)}
+.spacer{height:34px}
+.section-title{display:flex; align-items:baseline; gap:14px; margin:38px 0 16px}
+.section-title h2{white-space:nowrap}
+.section-title .rule{flex:1; height:1px; background:var(--line)}
+
+@media (max-width:1080px){
+  .leo-layout{grid-template-columns:1fr} .alloc-layout{grid-template-columns:1fr}
+  .g4{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .shell{flex-direction:column}
+  .sidebar{width:100%; flex:none; height:auto; position:static; flex-direction:column}
+  .nav{display:grid; grid-template-columns:repeat(2,1fr); gap:4px; padding:10px}
+  .nav-title{display:none} .nav a .d{display:none}
+  .content{padding:24px 18px 60px}
+  .hero{padding:28px 22px} .hero h1{font-size:30px}
+  h1{font-size:30px}
+  .lesson-layout{grid-template-columns:1fr}
+  .lesson-list{position:static; display:flex; overflow-x:auto; border-left:none; border-bottom:1px solid var(--line); padding-bottom:4px}
+  .lesson-list button{white-space:nowrap; border-left:none; border-bottom:2px solid transparent}
+  .lesson-list button.active{border-left-color:transparent; border-bottom-color:var(--garnet)}
+  .lesson-body{padding:22px 18px}
+  .flow{grid-template-columns:1fr} .flow a{border-right:none; border-bottom:1px solid var(--line-soft)}
+  .stat-strip{grid-template-columns:repeat(2,1fr)} .g2,.g3,.g4{grid-template-columns:1fr}
+  .steps{flex-wrap:wrap} .steps button{flex:1 0 50%}
+  .alloc-row{grid-template-columns:1fr 60px; grid-template-areas:"nm pc" "sl sl"}
+  .alloc-row .nm{grid-area:nm} .alloc-row .pc{grid-area:pc} .alloc-row .sl{grid-area:sl}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><span class="sig">BCRP</span><span class="rule"></span></div>
+      <div class="brand-sub">
+        <b>Gerencia de Operaciones Internacionales</b>
+        Departamento de Política de Inversión
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="nav-title">Curso de verano · Ruta del alumno</div>
+      <a href="#/inicio" data-route="inicio"><span class="n">—</span><span class="t">Inicio</span></a>
+      <a href="#/aprendizaje" data-route="aprendizaje"><span class="n">I</span><span class="t">Aprendizaje</span><span class="d">Fixed income, macro y asset allocation</span></a>
+      <a href="#/practica" data-route="practica"><span class="n">II</span><span class="t">Práctica</span><span class="d">Cinco niveles de dificultad</span></a>
+      <a href="#/research" data-route="research"><span class="n">III</span><span class="t">Research</span><span class="d">LEO y la biblioteca de reportes</span></a>
+      <a href="#/simulacion" data-route="simulacion"><span class="n">IV</span><span class="t">Simulación</span><span class="d">Asignación estratégica de activos</span></a>
+    </nav>
+    <div class="nav-foot">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+        <span id="globalProgress">Progreso del curso: 0%</span>
+        <button id="resetBtn" type="button">Reiniciar</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content">
+
+      <!-- ================= INICIO ================= -->
+      <section class="page" id="page-inicio">
+        <div class="hero">
+          <div class="eyebrow">Plataforma educativa interna</div>
+          <h1>Cómo se administran las reservas internacionales del Perú</h1>
+          <p>Un recorrido guiado por el análisis macroeconómico, financiero y de riesgos que sirve de insumo para la asignación estratégica de activos del portafolio de reservas.</p>
+          <div class="reserves">
+            <div class="rlabel"><span>Composición ilustrativa del portafolio de referencia</span><span class="mono">100%</span></div>
+            <div class="rbar" id="heroBar"></div>
+            <div class="rlegend" id="heroLegend"></div>
+            <div class="hero-note">Cifras ilustrativas con fines didácticos. No representan la composición efectiva de las reservas del BCRP.</div>
+          </div>
+        </div>
+
+        <div class="section-title"><h2>¿Quiénes somos?</h2><span class="rule"></span></div>
+        <div class="grid g2">
+          <div class="prose">
+            <p>El <strong>Departamento de Política de Inversión</strong> forma parte de la Gerencia de Operaciones Internacionales del Banco Central de Reserva del Perú. Nuestro trabajo consiste en estudiar el entorno económico y financiero global para proponer cómo debe estar invertido el portafolio de reservas internacionales.</p>
+            <p>Analizamos el ciclo económico de las principales economías, la trayectoria de la inflación y de la política monetaria, el comportamiento de las curvas de rendimiento, las condiciones financieras, los tipos de cambio y los riesgos que podrían alterar ese escenario. De ese análisis salen las perspectivas sobre las variables que determinan el retorno y el riesgo de cada clase de activo.</p>
+            <p>Ese diagnóstico se traduce en una <strong>asignación estratégica de activos</strong>: qué proporción del portafolio se invierte en cada tipo de instrumento, con qué duración, en qué monedas y bajo qué límites de riesgo. Las reservas se administran con tres criterios en este orden: seguridad, liquidez y, sólo después, rentabilidad.</p>
+          </div>
+          <div class="grid" style="gap:14px;align-content:start">
+            <div class="card">
+              <h3>Qué analizamos</h3>
+              <p>Crecimiento, inflación, política monetaria, curvas de rendimiento, spreads de crédito, tipos de cambio, condiciones financieras y riesgos geopolíticos.</p>
+            </div>
+            <div class="card">
+              <h3>Qué producimos</h3>
+              <p>Perspectivas de mercado, proyecciones de variables clave, escenarios de riesgo y propuestas de asignación estratégica y táctica del portafolio.</p>
+            </div>
+            <div class="card">
+              <h3>Con qué criterios</h3>
+              <p>Seguridad del capital, liquidez suficiente para atender las necesidades de la economía y rentabilidad dentro de los límites de riesgo aprobados.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title"><h2>Cómo funciona el curso</h2><span class="rule"></span></div>
+        <div class="flow">
+          <a href="#/aprendizaje"><span class="step">I</span><h3>Aprendizaje</h3><p>Lecciones interactivas de renta fija, macroeconomía y asignación de activos.</p></a>
+          <a href="#/practica"><span class="step">II</span><h3>Práctica</h3><p>Quizzes por nivel, de principiante a experto, con puntaje y diagnóstico.</p></a>
+          <a href="#/research"><span class="step">III</span><h3>Research</h3><p>LEO responde sobre los reportes y documentos cargados por el equipo.</p></a>
+          <a href="#/simulacion"><span class="step">IV</span><h3>Simulación</h3><p>Un escenario real: analizar, proyectar y proponer una asignación.</p></a>
+        </div>
+
+        <div class="section-title"><h2>Dónde te quedaste</h2><span class="rule"></span></div>
+        <div class="stat-strip" id="homeStats"></div>
+      </section>
+
+      <!-- ================= APRENDIZAJE ================= -->
+      <section class="page" id="page-aprendizaje">
+        <div class="page-head">
+          <h1>Aprendizaje</h1>
+          <p class="lede">Tres módulos, doce lecciones. Cada lección combina la teoría con un gráfico que puedes manipular y una pregunta para comprobar que el concepto quedó claro.</p>
+        </div>
+        <div class="grid g3" id="moduleGrid"></div>
+        <div class="notice">Tu avance se guarda en este navegador. Puedes retomar una lección donde la dejaste.</div>
+      </section>
+
+      <!-- ================= MÓDULO ================= -->
+      <section class="page" id="page-modulo">
+        <div class="page-head">
+          <div class="crumb"><a href="#/aprendizaje">Aprendizaje</a> <span id="modCrumb"></span></div>
+          <h1 id="modTitle"></h1>
+          <p class="lede" id="modDesc"></p>
+        </div>
+        <div class="lesson-layout">
+          <div class="lesson-list" id="lessonList"></div>
+          <div class="lesson-body" id="lessonBody"></div>
+        </div>
+      </section>
+
+      <!-- ================= PRÁCTICA ================= -->
+      <section class="page" id="page-practica">
+        <div class="page-head">
+          <h1>Práctica</h1>
+          <p class="lede">Cinco niveles de dificultad creciente. Responde, revisa la explicación y descubre en qué temas necesitas volver sobre la teoría.</p>
+        </div>
+        <div class="stat-strip" id="practiceStats"></div>
+        <div class="level-row" id="levelList"></div>
+        <div class="section-title"><h2>Dónde necesitas reforzar</h2><span class="rule"></span></div>
+        <div class="card"><div class="weak" id="weakList"></div></div>
+      </section>
+
+      <!-- ================= QUIZ ================= -->
+      <section class="page" id="page-quiz">
+        <div class="crumb"><a href="#/practica">Práctica</a> <span id="quizCrumb"></span></div>
+        <div class="quiz-head">
+          <h2 id="quizTitle"></h2>
+          <div class="qprog"><i id="quizProg"></i></div>
+          <span class="small mono" id="quizCount"></span>
+        </div>
+        <div class="quiz-card" id="quizCard"></div>
+      </section>
+
+      <!-- ================= RESEARCH ================= -->
+      <section class="page" id="page-research">
+        <div class="page-head">
+          <h1>Research</h1>
+          <p class="lede">LEO es el asistente de investigación de la plataforma. Responde a partir de los documentos que el equipo carga en la biblioteca y siempre indica de dónde sacó la información.</p>
+        </div>
+        <div class="leo-layout">
+          <div>
+            <div class="leo">
+              <div class="leo-top">
+                <div class="leo-avatar">L</div>
+                <div><div class="nm">LEO</div><div class="st">Asistente de research · 6 documentos en la biblioteca</div></div>
+              </div>
+              <div class="leo-log" id="leoLog"></div>
+              <div class="chips" id="leoChips"></div>
+              <div class="leo-ask">
+                <textarea id="leoInput" rows="1" placeholder="Pregunta sobre un concepto, un reporte o una relación entre variables…"></textarea>
+                <button class="btn" id="leoSend" type="button">Enviar</button>
+              </div>
+            </div>
+            <div class="notice">Demostración de la interfaz. En esta versión LEO responde con respuestas preparadas; la búsqueda sobre los documentos reales se conecta en la siguiente etapa.</div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:10px">Biblioteca</h4>
+            <div class="doclist" id="docList"></div>
+            <h4 style="margin:22px 0 8px">Cómo aprovechar a LEO</h4>
+            <p class="small">Pídele que compare dos reportes, que te explique un gráfico o que te guíe con pistas antes de darte la respuesta. Si la pregunta se sale de la biblioteca, te lo dirá.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SIMULACIÓN ================= -->
+      <section class="page" id="page-simulacion">
+        <div class="page-head">
+          <h1>Simulación</h1>
+          <p class="lede">Un comité de inversiones en tres pasos: leer el escenario, construir tus perspectivas y traducirlas en una asignación estratégica de activos.</p>
+        </div>
+        <div class="steps" id="simSteps">
+          <button type="button" data-step="0"><span class="s">Paso 1</span><span class="l">Escenario</span></button>
+          <button type="button" data-step="1"><span class="s">Paso 2</span><span class="l">Análisis y proyecciones</span></button>
+          <button type="button" data-step="2"><span class="s">Paso 3</span><span class="l">Asignación</span></button>
+          <button type="button" data-step="3"><span class="s">Paso 4</span><span class="l">Revisión del comité</span></button>
+        </div>
+        <div id="simBody"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+"use strict";
+/* ============================================================
+   Estado y persistencia
+   ============================================================ */
+var STORE_KEY = "bcrp_dpi_platform_v1";
+var state = {
+  lessons: {},       // "fixed-income:2": true
+  quiz: {},          // "1": {score, total, ts}
+  topicErrors: {},   // tema -> {wrong, total}
+  sim: { step:0, vars:[], proj:{}, notes:"", alloc:null, submitted:false }
+};
+function load(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(raw){ var p = JSON.parse(raw); state = Object.assign(state, p); if(!state.sim) state.sim={step:0,vars:[],proj:{},notes:"",alloc:null,submitted:false}; }
+  }catch(e){ /* almacenamiento no disponible: se trabaja sin guardar */ }
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+function $(s,root){ return (root||document).querySelector(s); }
+function $$(s,root){ return Array.prototype.slice.call((root||document).querySelectorAll(s)); }
+function el(tag, cls, html){ var n=document.createElement(tag); if(cls) n.className=cls; if(html!=null) n.innerHTML=html; return n; }
+function fmt(n,d){ return Number(n).toFixed(d==null?2:d); }
+function pct(n,d){ return fmt(n,d==null?1:d)+"%"; }
+
+/* ============================================================
+   Gráficos SVG
+   ============================================================ */
+function lineChart(o){
+  var w=o.w||640, h=o.h||280, L=o.left||46, R=o.right||14, T=o.top||14, B=o.bottom||34;
+  var xmin=o.xmin, xmax=o.xmax, ymin=o.ymin, ymax=o.ymax;
+  function X(v){ return L + (v-xmin)/(xmax-xmin)*(w-L-R); }
+  function Y(v){ return T + (1-(v-ymin)/(ymax-ymin))*(h-T-B); }
+  var s = '<svg class="chart" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="'+(o.alt||"Gráfico")+'">';
+  (o.yticks||[]).forEach(function(t){
+    s += '<line class="gridline" x1="'+L+'" y1="'+Y(t.v)+'" x2="'+(w-R)+'" y2="'+Y(t.v)+'"/>';
+    s += '<text x="'+(L-8)+'" y="'+(Y(t.v)+4)+'" text-anchor="end">'+t.l+'</text>';
+  });
+  (o.xticks||[]).forEach(function(t){
+    s += '<text x="'+X(t.v)+'" y="'+(h-B+18)+'" text-anchor="middle">'+t.l+'</text>';
+  });
+  if(o.zero!=null){ s += '<line class="axis" x1="'+L+'" y1="'+Y(o.zero)+'" x2="'+(w-R)+'" y2="'+Y(o.zero)+'"/>'; }
+  s += '<line class="axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(h-B)+'"/>';
+  s += '<line class="axis" x1="'+L+'" y1="'+(h-B)+'" x2="'+(w-R)+'" y2="'+(h-B)+'"/>';
+  (o.areas||[]).forEach(function(a){
+    var d = a.pts.map(function(p,i){ return (i?'L':'M')+X(p[0])+' '+Y(p[1]); }).join(' ');
+    d += ' L'+X(a.pts[a.pts.length-1][0])+' '+Y(a.base)+' L'+X(a.pts[0][0])+' '+Y(a.base)+' Z';
+    s += '<path d="'+d+'" fill="'+a.fill+'" opacity="'+(a.opacity||.14)+'"/>';
+  });
+  (o.series||[]).forEach(function(se){
+    if(!se.pts || !se.pts.length) return;
+    var d = se.pts.map(function(p,i){ return (i?'L':'M')+X(p[0])+' '+Y(p[1]); }).join(' ');
+    s += '<path class="'+(se.cls||'ser1')+'" d="'+d+'"/>';
+    if(se.dots) se.pts.forEach(function(p){ s += '<circle class="dot" cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="3.2" style="fill:'+(se.color||'currentColor')+'"/>'; });
+    if(se.label){ var lp = se.labelAt || se.pts[se.pts.length-1];
+      s += '<text class="lab" x="'+(X(lp[0])-6)+'" y="'+(Y(lp[1])-8)+'" text-anchor="end">'+se.label+'</text>'; }
+  });
+  (o.marks||[]).forEach(function(m){
+    s += '<circle cx="'+X(m.x)+'" cy="'+Y(m.y)+'" r="'+(m.r||4.5)+'" fill="'+m.color+'"/>';
+    if(m.label) s += '<text class="lab" x="'+(X(m.x)+9)+'" y="'+(Y(m.y)+4)+'">'+m.label+'</text>';
+  });
+  (o.bars||[]).forEach(function(b){
+    var x0=X(b.x0), x1=X(b.x1), y0=Y(Math.max(b.y,o.zero||0)), y1=Y(Math.min(b.y,o.zero||0));
+    s += '<rect x="'+x0+'" y="'+y0+'" width="'+(x1-x0)+'" height="'+Math.max(1,y1-y0)+'" fill="'+b.color+'" opacity="'+(b.opacity||.85)+'"/>';
+  });
+  s += '</svg>';
+  return s;
+}
+function ticks(min,max,step,dec,suffix){
+  var out=[]; for(var v=min; v<=max+1e-9; v+=step) out.push({v:v, l:fmt(v,dec==null?1:dec)+(suffix||"")});
+  return out;
+}
+
+/* Widget genérico: controles + gráfico + lecturas */
+function makeWidget(host, cfg){
+  var box = el("div","widget");
+  var head = el("div","widget-head",'<h4>'+cfg.title+'</h4>'+(cfg.hint?'<span class="hint">'+cfg.hint+'</span>':''));
+  box.appendChild(head);
+  var chart = el("div","chart-wrap"); box.appendChild(chart);
+  var reads = el("div","readouts"); 
+  var ctrls = el("div","controls");
+  (cfg.controls||[]).forEach(function(c){
+    var d = el("div","ctrl");
+    d.innerHTML = '<label for="'+c.id+'"><span>'+c.label+'</span><b id="v_'+c.id+'"></b></label>'+
+      '<input type="range" id="'+c.id+'" min="'+c.min+'" max="'+c.max+'" step="'+c.step+'" value="'+c.val+'">';
+    ctrls.appendChild(d);
+  });
+  box.appendChild(ctrls);
+  box.appendChild(reads);
+  host.appendChild(box);
+  function vals(){
+    var v={}; (cfg.controls||[]).forEach(function(c){ v[c.id]=parseFloat($("#"+c.id,box).value); }); return v;
+  }
+  function draw(){
+    var v = vals();
+    (cfg.controls||[]).forEach(function(c){ $("#v_"+c.id,box).textContent = (c.fmt? c.fmt(v[c.id]) : fmt(v[c.id],2)); });
+    var r = cfg.render(v);
+    chart.innerHTML = r.svg || "";
+    reads.innerHTML = (r.readouts||[]).map(function(x){
+      return '<div class="readout"><div class="k">'+x.k+'</div><div class="v">'+x.v+'</div></div>'; }).join("");
+  }
+  (cfg.controls||[]).forEach(function(c){ $("#"+c.id,box).addEventListener("input", draw); });
+  draw();
+  return box;
+}
+
+/* Pregunta de comprensión dentro de una lección */
+function makeCheck(host, q, onDone){
+  var box = el("div","check");
+  box.innerHTML = '<div class="q">'+q.q+'</div>';
+  var opts = el("div","opts");
+  q.options.forEach(function(text,i){
+    var b = el("button","opt"); b.type="button";
+    b.innerHTML = '<span class="mk">'+"abcd"[i]+'</span><span>'+text+'</span>';
+    b.addEventListener("click", function(){
+      if(box.dataset.answered) return;
+      box.dataset.answered = "1";
+      $$(".opt",box).forEach(function(o,j){ if(j===q.answer) o.classList.add("ok"); });
+      if(i!==q.answer) b.classList.add("no");
+      var fb = el("div","feedback", '<b>'+(i===q.answer?"Correcto.":"No es la respuesta.")+'</b> '+q.explain);
+      box.appendChild(fb);
+      if(onDone) onDone(i===q.answer);
+    });
+    opts.appendChild(b);
+  });
+  box.appendChild(opts);
+  host.appendChild(box);
+}
+
+/* ============================================================
+   Portafolio de referencia (usado en la portada y la simulación)
+   ============================================================ */
+var ASSETS = [
+  {id:"cash",  name:"Depósitos y papeles ≤ 6 meses", sub:"USD · liquidez", r:4.10, v:0.40, dur:0.25, fx:0.00, color:"#0F6B70", ref:20},
+  {id:"t13",   name:"Tesoros EE.UU. 1–3 años",       sub:"USD · soberano", r:4.30, v:1.80, dur:1.90, fx:0.00, color:"#1F8C92", ref:28},
+  {id:"t510",  name:"Tesoros EE.UU. 5–10 años",      sub:"USD · soberano", r:4.60, v:6.20, dur:6.50, fx:0.00, color:"#8E1F2F", ref:14},
+  {id:"agcy",  name:"Agencias y supranacionales",    sub:"USD · AAA/AA",   r:4.50, v:2.40, dur:2.80, fx:0.00, color:"#B02C3E", ref:16},
+  {id:"corp",  name:"Corporativos grado de inversión", sub:"USD · A/BBB",  r:5.10, v:4.50, dur:4.20, fx:0.00, color:"#B8862F", ref:8},
+  {id:"nonusd",name:"Soberanos en otras monedas",    sub:"EUR · JPY · CNY",r:3.40, v:7.50, dur:4.00, fx:1.00, color:"#6C5CA5", ref:9},
+  {id:"gold",  name:"Oro",                            sub:"sin cupón",     r:3.00, v:14.0, dur:0.00, fx:0.50, color:"#D6A84E", ref:5}
+];
+var CORR = [
+ [1.00, 0.55, 0.20, 0.35, 0.15, 0.10, 0.00],
+ [0.55, 1.00, 0.78, 0.85, 0.45, 0.30, 0.05],
+ [0.20, 0.78, 1.00, 0.88, 0.55, 0.40, 0.15],
+ [0.35, 0.85, 0.88, 1.00, 0.62, 0.35, 0.08],
+ [0.15, 0.45, 0.55, 0.62, 1.00, 0.35, 0.05],
+ [0.10, 0.30, 0.40, 0.35, 0.35, 1.00, 0.30],
+ [0.00, 0.05, 0.15, 0.08, 0.05, 0.30, 1.00]
+];
+function portfolioMetrics(wts){
+  var n=ASSETS.length, ret=0, dur=0, fx=0, varSum=0;
+  for(var i=0;i<n;i++){ var wi=wts[i]/100; ret+=wi*ASSETS[i].r; dur+=wi*ASSETS[i].dur; fx+=wi*ASSETS[i].fx; }
+  for(var a=0;a<n;a++) for(var b=0;b<n;b++){
+    varSum += (wts[a]/100)*(wts[b]/100)*ASSETS[a].v*ASSETS[b].v*CORR[a][b];
+  }
+  var vol = Math.sqrt(Math.max(varSum,0));
+  var rc = [];
+  for(var k=0;k<n;k++){
+    var cov=0; for(var j=0;j<n;j++) cov += (wts[j]/100)*ASSETS[k].v*ASSETS[j].v*CORR[k][j];
+    rc.push(vol>0 ? (wts[k]/100)*cov/vol : 0);
+  }
+  return {ret:ret, vol:vol, dur:dur, fx:fx*100, rc:rc,
+          sharpe: vol>0 ? (ret-4.10)/vol : 0,
+          var95: 1.645*vol - ret};
+}
+
+/* ============================================================
+   Portada
+   ============================================================ */
+function renderHero(){
+  var bar = $("#heroBar"), leg = $("#heroLegend");
+  bar.innerHTML=""; leg.innerHTML="";
+  ASSETS.forEach(function(a){
+    var sp = el("span"); sp.style.background=a.color; sp.title=a.name+" · "+a.ref+"%";
+    bar.appendChild(sp);
+    leg.appendChild(el("span",null,'<i style="background:'+a.color+'"></i>'+a.name.replace(/ ≤.*/,"")+' <span class="mono">'+a.ref+'%</span>'));
+    requestAnimationFrame(function(){ setTimeout(function(){ sp.style.width = a.ref+"%"; }, 120); });
+  });
+}
+function renderHomeStats(){
+  var totalLessons = MODULES.reduce(function(s,m){ return s+m.lessons.length; },0);
+  var doneLessons = Object.keys(state.lessons).length;
+  var quizzesDone = Object.keys(state.quiz).length;
+  var best = 0; Object.keys(state.quiz).forEach(function(k){ best = Math.max(best, parseInt(k,10)); });
+  var simStep = state.sim.submitted ? "Completada" : (state.sim.step>0 ? "Paso "+(state.sim.step+1)+" de 4" : "No iniciada");
+  $("#homeStats").innerHTML =
+    stat("Lecciones completadas", doneLessons+" / "+totalLessons) +
+    stat("Niveles de práctica resueltos", quizzesDone+" / 5") +
+    stat("Nivel más alto alcanzado", best? LEVELS[best-1].name : "—") +
+    stat("Simulación", simStep);
+  var overall = Math.round(((doneLessons/totalLessons)*0.5 + (quizzesDone/5)*0.3 + (state.sim.submitted?1:state.sim.step/4)*0.2)*100);
+  $("#globalProgress").textContent = "Progreso del curso: "+overall+"%";
+}
+function stat(k,v){ return '<div class="stat"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+/* ============================================================
+   APRENDIZAJE — contenido de los módulos
+   ============================================================ */
+function bondPrice(c, y, n, f){ f=f||1; var pv=0, cpn=c/f, m=n*f, yy=y/f;
+  for(var t=1;t<=m;t++) pv += cpn/Math.pow(1+yy/100, t);
+  pv += 100/Math.pow(1+yy/100, m); return pv; }
+function bondStats(c,y,n){
+  var h=0.01, p0=bondPrice(c,y,n), pu=bondPrice(c,y+h,n), pd=bondPrice(c,y-h,n);
+  var modDur = (pd-pu)/(2*p0*h/100)/100;
+  var convex = (pu+pd-2*p0)/(p0*Math.pow(h/100,2))/10000;
+  return {p:p0, dur:modDur, cvx:convex};
+}
+function nsCurve(b0,b1,b2,tau){
+  var pts=[]; for(var t=0.25;t<=30.01;t+=0.25){
+    var k=t/tau, e=Math.exp(-k);
+    var y = b0 + b1*((1-e)/k) + b2*((1-e)/k - e);
+    pts.push([t,y]);
+  } return pts;
+}
+function nsY(b0,b1,b2,tau,t){ var k=t/tau,e=Math.exp(-k); return b0+b1*((1-e)/k)+b2*((1-e)/k-e); }
+
+var MODULES = [
+{
+  id:"fixed-income", name:"Fixed Income", tag:"Renta fija",
+  desc:"El activo central de un portafolio de reservas. Cómo se forma el precio de un bono, qué dice la curva de rendimientos y cómo se mide la sensibilidad a las tasas.",
+  topics:["Precio, cupón y rendimiento","Curva de rendimientos","Duration y convexity","Spreads y riesgo de crédito"],
+  lessons:[
+  {
+    t:"Precio, cupón y rendimiento",
+    kicker:"Lección 1 · Por qué el precio de un bono se mueve al revés que su tasa",
+    body:
+      '<p>Un bono es una promesa de pagos futuros: cupones periódicos y la devolución del principal al vencimiento. Su precio hoy es el valor presente de esos pagos, descontados a una tasa que refleja lo que el mercado exige por prestar ese dinero. Esa tasa es el <strong>rendimiento al vencimiento</strong> o YTM.</p>'+
+      '<p>De ahí sale la relación más importante de la renta fija: si la tasa exigida sube, el mismo flujo de pagos vale menos hoy, y el precio cae. Si la tasa baja, el precio sube. Cupón y precio se mueven en direcciones opuestas al rendimiento.</p>'+
+      '<div class="formula">P = Σ  C / (1+y)^t  +  100 / (1+y)^n</div>'+
+      '<p>Cuando el cupón coincide con el rendimiento, el bono cotiza a la par (100). Si el cupón es mayor que el rendimiento, cotiza sobre la par; si es menor, bajo la par. Para un administrador de reservas esto importa porque el retorno de un período no es sólo el cupón cobrado: incluye el cambio de precio provocado por el movimiento de tasas.</p>',
+    keys:["El precio es el valor presente de los flujos futuros.","Precio y rendimiento se mueven en sentido contrario.","Cupón &gt; rendimiento → precio sobre la par.","El retorno de un período = cupón + cambio de precio."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Precio de un bono frente a su rendimiento",
+        hint:"Mueve el rendimiento y observa dónde queda el precio",
+        controls:[
+          {id:"fi1c",label:"Cupón anual",min:0,max:8,step:.25,val:4, fmt:function(v){return pct(v,2)}},
+          {id:"fi1y",label:"Rendimiento exigido",min:0.5,max:9,step:.1,val:4.5, fmt:function(v){return pct(v,2)}},
+          {id:"fi1n",label:"Plazo",min:1,max:30,step:1,val:10, fmt:function(v){return v+" años"}}
+        ],
+        render:function(v){
+          var pts=[]; for(var y=0.5;y<=9.01;y+=0.25) pts.push([y, bondPrice(v.fi1c,y,v.fi1n)]);
+          var s = bondStats(v.fi1c, v.fi1y, v.fi1n);
+          var ys = pts.map(function(p){return p[1];});
+          var lo=Math.min.apply(null,ys), hi=Math.max.apply(null,ys);
+          return {
+            svg: lineChart({h:260, xmin:0.5,xmax:9, ymin:Math.floor(lo/10)*10, ymax:Math.ceil(hi/10)*10,
+              xticks:ticks(1,9,2,0,"%"), yticks:ticks(Math.floor(lo/10)*10, Math.ceil(hi/10)*10, Math.max(10,Math.round((hi-lo)/4/10)*10),0),
+              series:[{pts:pts, cls:"ser1"}],
+              marks:[{x:v.fi1y,y:s.p,color:"#B8862F",label:fmt(s.p,2)}],
+              alt:"Relación entre precio y rendimiento de un bono"}),
+            readouts:[{k:"Precio",v:fmt(s.p,2)},{k:"Duration modificada",v:fmt(s.dur,2)},{k:"Convexity",v:fmt(s.cvx,1)},
+                      {k:"Cupón vs rendimiento",v: v.fi1c>v.fi1y? "sobre la par" : (v.fi1c<v.fi1y? "bajo la par":"a la par")}]
+          };
+        }
+      });
+    },
+    check:{ q:"Un bono a 10 años con cupón de 3% cotiza a 92. ¿Qué se puede afirmar?",
+      options:["Su rendimiento al vencimiento es menor que 3%.","Su rendimiento al vencimiento es mayor que 3%.","Su rendimiento es exactamente 3%.","No se puede decir nada sin conocer el emisor."],
+      answer:1,
+      explain:"Cotiza bajo la par, así que el mercado exige un rendimiento superior al cupón. El descuento en el precio compensa al inversionista por ese cupón relativamente bajo." }
+  },
+  {
+    t:"La curva de rendimientos",
+    kicker:"Lección 2 · Nivel, pendiente y curvatura",
+    body:
+      '<p>La curva de rendimientos une los rendimientos de bonos del mismo emisor a distintos plazos. Para un portafolio de reservas, la curva de tesoros de EE.UU. es la referencia: define el retorno disponible en cada punto del plazo y el costo de alargar o acortar la duración.</p>'+
+      '<p>Casi todo su movimiento se resume en tres factores. El <strong>nivel</strong> desplaza toda la curva y suele responder a las expectativas de tasa de política y de inflación de largo plazo. La <strong>pendiente</strong> (por ejemplo 10 años menos 2 años) recoge la expectativa sobre el ciclo: se empina cuando el mercado anticipa recortes o más crecimiento, y se aplana o invierte cuando anticipa un ciclo restrictivo o una desaceleración. La <strong>curvatura</strong> afecta sobre todo a los plazos intermedios.</p>'+
+      '<p>Una curva invertida ha precedido históricamente a las recesiones en EE.UU., aunque con rezagos largos y variables. Además, la pendiente determina el <em>roll-down</em>: si la curva tiene pendiente positiva y no se mueve, un bono gana valor con el simple paso del tiempo al descender por la curva.</p>',
+    keys:["Nivel, pendiente y curvatura explican la mayor parte del movimiento de la curva.","La pendiente 10a–2a resume la expectativa sobre el ciclo.","Con pendiente positiva, el roll-down añade retorno.","Una inversión de la curva es una señal de alerta, no un calendario."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Construye una curva de rendimientos",
+        hint:"β₀ nivel · β₁ pendiente · β₂ curvatura (Nelson-Siegel)",
+        controls:[
+          {id:"fi2a",label:"Nivel (β₀)",min:1,max:7,step:.1,val:4.2,fmt:function(v){return pct(v,2)}},
+          {id:"fi2b",label:"Pendiente (β₁)",min:-3,max:3,step:.1,val:0.8,fmt:function(v){return fmt(v,2)}},
+          {id:"fi2c",label:"Curvatura (β₂)",min:-4,max:4,step:.1,val:-1.0,fmt:function(v){return fmt(v,2)}}
+        ],
+        render:function(v){
+          var pts = nsCurve(v.fi2a, v.fi2b, v.fi2c, 2.5);
+          var y2 = nsY(v.fi2a,v.fi2b,v.fi2c,2.5,2), y10 = nsY(v.fi2a,v.fi2b,v.fi2c,2.5,10);
+          var slope = (y10-y2)*100;
+          return {
+            svg: lineChart({h:250, xmin:0, xmax:30, ymin:0, ymax:8,
+              xticks:[{v:2,l:"2a"},{v:5,l:"5a"},{v:10,l:"10a"},{v:20,l:"20a"},{v:30,l:"30a"}],
+              yticks:ticks(0,8,2,0,"%"),
+              series:[{pts:pts, cls:"ser1"}],
+              marks:[{x:2,y:y2,color:"#0F6B70",label:"2a "+fmt(y2,2)+"%"},{x:10,y:y10,color:"#B8862F",label:"10a "+fmt(y10,2)+"%"}],
+              alt:"Curva de rendimientos"}),
+            readouts:[{k:"Tasa 2 años",v:pct(y2,2)},{k:"Tasa 10 años",v:pct(y10,2)},
+              {k:"Pendiente 10a–2a",v:fmt(slope,0)+" pb"},
+              {k:"Forma",v: slope>25?"con pendiente positiva": (slope<-25?"invertida":"plana")}]
+          };
+        }
+      });
+    },
+    check:{ q:"El tramo 10a–2a pasa de +80 pb a –30 pb mientras la tasa de política sube. La lectura más razonable es:",
+      options:["El mercado espera más inflación de largo plazo.","El mercado descuenta un ciclo restrictivo que terminará frenando la actividad.","El riesgo de crédito soberano aumentó.","La liquidez del mercado de tesoros se deterioró."],
+      answer:1,
+      explain:"El tramo corto se ancla en la tasa de política esperada en el horizonte inmediato; el largo incorpora la expectativa de que ese nivel no es sostenible. Un aplanamiento hacia terreno negativo durante un ciclo de alzas señala expectativas de desaceleración y recortes posteriores." }
+  },
+  {
+    t:"Duration y convexity",
+    kicker:"Lección 3 · Cuánto pierde el portafolio si las tasas suben",
+    body:
+      '<p>La <strong>duration modificada</strong> responde a una pregunta muy concreta: ¿en qué porcentaje cambia el precio ante un movimiento de 100 puntos básicos en el rendimiento? Un bono con duration 6 pierde aproximadamente 6% si la tasa sube 1%. Es la medida de riesgo de tasa que usa todos los días un administrador de portafolios.</p>'+
+      '<p>Pero la relación precio–rendimiento es una curva, no una recta. La <strong>convexity</strong> mide esa curvatura y siempre juega a favor del tenedor de un bono sin opcionalidad: la ganancia cuando las tasas bajan es algo mayor que la pérdida cuando suben la misma magnitud. Por eso la aproximación por duration subestima el precio en ambas direcciones.</p>'+
+      '<div class="formula">ΔP/P ≈ −D<sub>mod</sub> × Δy + ½ × C × (Δy)²</div>'+
+      '<p>En un portafolio, la duration es el promedio ponderado de las duration de cada posición. Decidir la duration del portafolio equivale a decidir cuánto riesgo de tasa se quiere asumir, y esa decisión se apoya directamente en la perspectiva macroeconómica.</p>',
+    keys:["Duration modificada = sensibilidad del precio a 100 pb.","La convexity es un beneficio para el tenedor del bono.","La duration del portafolio es el promedio ponderado de sus posiciones.","Elegir duration es elegir cuánto riesgo de tasa asumir."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Aproximación por duration frente al cambio efectivo del precio",
+        hint:"Observa la brecha en movimientos grandes",
+        controls:[
+          {id:"fi3n",label:"Plazo del bono",min:1,max:30,step:1,val:10,fmt:function(v){return v+" años"}},
+          {id:"fi3c",label:"Cupón",min:0,max:8,step:.25,val:4,fmt:function(v){return pct(v,2)}},
+          {id:"fi3d",label:"Movimiento de tasas",min:-200,max:200,step:10,val:100,fmt:function(v){return (v>0?"+":"")+v+" pb"}}
+        ],
+        render:function(v){
+          var y0=4.5, s=bondStats(v.fi3c,y0,v.fi3n);
+          var real=[], approx=[], both=[];
+          for(var d=-200; d<=200; d+=10){
+            var dy=d/100;
+            var pr=(bondPrice(v.fi3c,y0+dy,v.fi3n)/s.p-1)*100;
+            real.push([d,pr]);
+            approx.push([d, -s.dur*dy]);
+            both.push([d, -s.dur*dy + 0.5*s.cvx*dy*dy]);
+          }
+          var dy=v.fi3d/100;
+          var prReal=(bondPrice(v.fi3c,y0+dy,v.fi3n)/s.p-1)*100;
+          var prApp=-s.dur*dy;
+          return {
+            svg: lineChart({h:260, xmin:-200,xmax:200, ymin:-35, ymax:45, zero:0,
+              xticks:[{v:-200,l:"-200 pb"},{v:-100,l:"-100"},{v:0,l:"0"},{v:100,l:"+100"},{v:200,l:"+200 pb"}],
+              yticks:ticks(-30,40,10,0,"%"),
+              series:[{pts:real,cls:"ser1",label:"cambio efectivo"},{pts:approx,cls:"ser2",label:"sólo duration",labelAt:approx[2]},{pts:both,cls:"ser3"}],
+              marks:[{x:v.fi3d,y:prReal,color:"#8E1F2F"}],
+              alt:"Cambio de precio ante movimientos de tasa"}),
+            readouts:[{k:"Duration modificada",v:fmt(s.dur,2)},{k:"Convexity",v:fmt(s.cvx,1)},
+              {k:"Cambio efectivo",v:(prReal>0?"+":"")+pct(prReal,2)},
+              {k:"Error de la aproximación",v:fmt(prReal-prApp,2)+" pp"}]
+          };
+        }
+      });
+    },
+    check:{ q:"Dos bonos tienen duration 7. El bono A tiene convexity 60 y el bono B, 95. Ante un movimiento de tasas de ±150 pb, ¿qué es cierto?",
+      options:["Se comportan igual, porque la duration es la misma.","B rinde mejor que A en ambos escenarios.","A rinde mejor si las tasas bajan y peor si suben.","B sólo gana si las tasas bajan."],
+      answer:1,
+      explain:"A igual duration, mayor convexity significa ganar más cuando las tasas bajan y perder menos cuando suben. Por eso la convexity se paga: el mercado suele exigir un rendimiento algo menor por ese perfil." }
+  },
+  {
+    t:"Spreads y riesgo de crédito",
+    kicker:"Lección 4 · El precio de alejarse del activo libre de riesgo",
+    body:
+      '<p>El spread es el rendimiento adicional que ofrece un emisor sobre el tesoro de plazo equivalente. Compensa tres cosas: la probabilidad de incumplimiento, la menor liquidez del instrumento y la incertidumbre sobre cuánto se recuperaría en un escenario adverso.</p>'+
+      '<p>En un portafolio de reservas el espacio para asumir riesgo de crédito es limitado y suele restringirse a emisores de alta calificación: agencias, supranacionales y corporativos de grado de inversión, dentro de límites estrictos por emisor y por calificación. La razón es el orden de prioridades: seguridad y liquidez primero.</p>'+
+      '<p>Un dato útil para decidir: el <strong>ampliación de equilibrio</strong>. Si un bono paga 80 pb de spread con duration 4, el spread tendría que ampliarse unos 20 pb en un año para que la ganancia por carry desaparezca. Los spreads tienden además a comportarse de forma asimétrica: se estrechan despacio y se amplían de golpe cuando el mercado se tensiona, justo cuando el portafolio necesita liquidez.</p>',
+    keys:["El spread compensa crédito, liquidez y recuperación esperada.","Ampliación de equilibrio ≈ spread ÷ duration.","Los spreads se amplían más rápido de lo que se estrechan.","En reservas, el crédito se acota por calificación y por emisor."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Carry frente a ampliación de spreads",
+        hint:"¿Cuánto puede ampliarse el spread antes de perder lo ganado?",
+        controls:[
+          {id:"fi4s",label:"Spread inicial",min:10,max:250,step:5,val:80,fmt:function(v){return v+" pb"}},
+          {id:"fi4d",label:"Duration del crédito",min:1,max:8,step:.5,val:4,fmt:function(v){return fmt(v,1)}},
+          {id:"fi4w",label:"Ampliación en 12 meses",min:-60,max:150,step:5,val:30,fmt:function(v){return (v>0?"+":"")+v+" pb"}}
+        ],
+        render:function(v){
+          var pts=[]; for(var w=-60;w<=150;w+=5) pts.push([w, v.fi4s/100 - v.fi4d*w/100]);
+          var exc = v.fi4s/100 - v.fi4d*v.fi4w/100;
+          var be = v.fi4s/v.fi4d;
+          return {
+            svg: lineChart({h:240, xmin:-60,xmax:150, ymin:-6, ymax:4, zero:0,
+              xticks:[{v:-60,l:"-60 pb"},{v:0,l:"sin cambio"},{v:60,l:"+60"},{v:150,l:"+150 pb"}],
+              yticks:ticks(-6,4,2,0,"%"),
+              series:[{pts:pts,cls:"ser1"}],
+              marks:[{x:v.fi4w,y:exc,color:"#B8862F",label:fmt(exc,2)+"%"},{x:be,y:0,color:"#0F6B70",label:"equilibrio"}],
+              alt:"Retorno en exceso de un bono con spread"}),
+            readouts:[{k:"Retorno en exceso a 12 meses",v:(exc>0?"+":"")+pct(exc,2)},
+              {k:"Ampliación de equilibrio",v:fmt(be,0)+" pb"},
+              {k:"Carry anual",v:pct(v.fi4s/100,2)},
+              {k:"Resultado",v: exc>0? "compensa":"no compensa"}]
+          };
+        }
+      });
+    },
+    check:{ q:"Un corporativo AA paga 60 pb sobre el tesoro y tiene duration 3. ¿Cuál es aproximadamente la ampliación que anula la ganancia en un año?",
+      options:["6 pb","20 pb","60 pb","180 pb"],
+      answer:1,
+      explain:"60 pb de carry divididos entre una duration de 3 dan unos 20 pb de ampliación de equilibrio. Es un margen estrecho: por eso el tamaño de la posición en crédito importa tanto como la selección del emisor." }
+  }]
+},
+{
+  id:"macro", name:"Macro", tag:"Análisis macroeconómico",
+  desc:"El insumo que ordena todo lo demás: en qué punto del ciclo está la economía global, qué hará la inflación y cómo responderán los bancos centrales.",
+  topics:["Ciclo económico y brecha del producto","Inflación y expectativas","Política monetaria y tasa neutral","Condiciones financieras globales"],
+  lessons:[
+  {
+    t:"Ciclo económico y brecha del producto",
+    kicker:"Lección 1 · Dónde estamos en el ciclo",
+    body:
+      '<p>El producto potencial es el nivel de actividad que una economía puede sostener sin generar presiones inflacionarias. La <strong>brecha del producto</strong> es la distancia entre el producto observado y ese potencial. Una brecha positiva indica una economía operando por encima de su capacidad; una negativa, capacidad ociosa.</p>'+
+      '<p>La brecha no se observa: se estima, y con un margen de error considerable que se revisa hacia atrás durante años. Aun así es el concepto que ordena la lectura del ciclo, porque conecta la actividad con la inflación y con la reacción del banco central.</p>'+
+      '<p>Para el portafolio, la lectura del ciclo es la primera bifurcación. Una economía que se desacelera hacia una brecha negativa suele traer menor inflación, recortes de tasa, curvas que se empinan desde el tramo corto y un buen desempeño de los bonos soberanos de mayor duration. Una economía sobrecalentada trae lo contrario, y además amplía los spreads si el ajuste se vuelve desordenado.</p>',
+    keys:["Brecha del producto = observado − potencial.","Se estima con error y se revisa con frecuencia.","Brecha negativa → presiones desinflacionarias.","El ciclo determina la dirección de la duration del portafolio."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Brecha del producto y su efecto acumulado",
+        hint:"Crecimiento observado frente al potencial durante ocho trimestres",
+        controls:[
+          {id:"ma1g",label:"Crecimiento observado",min:-2,max:6,step:.1,val:1.4,fmt:function(v){return pct(v,1)}},
+          {id:"ma1p",label:"Crecimiento potencial",min:0.5,max:4,step:.1,val:2.0,fmt:function(v){return pct(v,1)}},
+          {id:"ma1i",label:"Brecha inicial",min:-3,max:3,step:.1,val:0.5,fmt:function(v){return fmt(v,1)+" pp"}}
+        ],
+        render:function(v){
+          var pts=[], g=v.ma1i;
+          for(var q=0;q<=8;q++){ pts.push([q,g]); g += (v.ma1g-v.ma1p)/4; }
+          var fin = pts[pts.length-1][1];
+          return {
+            svg: lineChart({h:240, xmin:0,xmax:8, ymin:-4,ymax:4, zero:0,
+              xticks:[{v:0,l:"hoy"},{v:2,l:"+2T"},{v:4,l:"+4T"},{v:6,l:"+6T"},{v:8,l:"+8T"}],
+              yticks:ticks(-4,4,2,0," pp"),
+              areas:[{pts:pts, base:0, fill:"#8E1F2F"}],
+              series:[{pts:pts,cls:"ser1",dots:true,color:"#8E1F2F"}],
+              alt:"Trayectoria de la brecha del producto"}),
+            readouts:[{k:"Brecha en 2 años",v:fmt(fin,1)+" pp"},
+              {k:"Dirección",v: v.ma1g>v.ma1p? "cierre al alza": (v.ma1g<v.ma1p? "apertura a la baja":"estable")},
+              {k:"Sesgo de inflación",v: fin>0.5? "al alza": (fin<-0.5? "a la baja":"neutral")},
+              {k:"Sesgo de duration",v: fin<-0.5? "alargar":"acortar"}]
+          };
+        }
+      });
+    },
+    check:{ q:"Una economía crece 1,2% con un potencial estimado de 2,0% y una brecha inicial de cero. A dos años, lo más probable es que:",
+      options:["La brecha se vuelva negativa y aparezcan presiones desinflacionarias.","La brecha se vuelva positiva y suba la inflación.","No haya efecto sobre la inflación.","El banco central suba la tasa de política."],
+      answer:0,
+      explain:"Crecer por debajo del potencial de forma sostenida abre capacidad ociosa. Eso presiona la inflación a la baja y, con rezago, suele llevar al banco central hacia una postura menos restrictiva." }
+  },
+  {
+    t:"Inflación y expectativas",
+    kicker:"Lección 2 · Por qué las expectativas hacen casi todo el trabajo",
+    body:
+      '<p>La inflación de un período depende de tres piezas: las expectativas de inflación, la presión de demanda medida por la brecha del producto y los choques de oferta (energía, alimentos, tipo de cambio, cadenas de suministro). La forma más simple de escribirlo es una curva de Phillips.</p>'+
+      '<div class="formula">π = π<sup>e</sup> + κ × brecha + choque</div>'+
+      '<p>La distinción clave para un analista es entre inflación total y <strong>subyacente</strong>. La total incorpora los componentes volátiles y sirve para medir el costo de vida; la subyacente filtra esos componentes y es mejor indicador de la tendencia. Un banco central puede tolerar un choque de oferta transitorio, pero no que contamine las expectativas.</p>'+
+      '<p>Ahí está el punto sensible: si las expectativas se desanclan, la inflación deja de converger sola y el costo de bajarla en términos de actividad aumenta. Por eso los mercados siguen tan de cerca los indicadores de expectativas —encuestas, breakevens de bonos indexados— y por eso esos indicadores mueven la parte larga de la curva.</p>',
+    keys:["π = expectativas + presión de demanda + choques.","La subyacente indica la tendencia; la total, el costo de vida.","Un choque transitorio se tolera; uno que desancla expectativas, no.","Los breakevens permiten leer las expectativas del mercado."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Trayectoria de inflación según expectativas y brecha",
+        hint:"Proyección a ocho trimestres con convergencia gradual",
+        controls:[
+          {id:"ma2e",label:"Expectativas a 12 meses",min:1,max:6,step:.1,val:2.4,fmt:function(v){return pct(v,1)}},
+          {id:"ma2b",label:"Brecha del producto",min:-3,max:3,step:.1,val:-0.4,fmt:function(v){return fmt(v,1)+" pp"}},
+          {id:"ma2s",label:"Choque de oferta",min:-2,max:3,step:.1,val:0.3,fmt:function(v){return fmt(v,1)+" pp"}}
+        ],
+        render:function(v){
+          var pts=[], infl=v.ma2e+0.35*v.ma2b+v.ma2s, shock=v.ma2s;
+          for(var q=0;q<=8;q++){
+            pts.push([q, infl]);
+            shock *= 0.72;
+            infl = 0.7*infl + 0.3*(v.ma2e + 0.35*v.ma2b) + shock*0.25;
+          }
+          var fin=pts[pts.length-1][1];
+          return {
+            svg: lineChart({h:240, xmin:0,xmax:8, ymin:0,ymax:7,
+              xticks:[{v:0,l:"hoy"},{v:4,l:"+1 año"},{v:8,l:"+2 años"}],
+              yticks:ticks(0,7,1,0,"%"),
+              series:[{pts:pts,cls:"ser1",dots:true,color:"#8E1F2F"},
+                      {pts:[[0,2],[8,2]],cls:"ser2",label:"meta 2%"}],
+              alt:"Trayectoria proyectada de inflación"}),
+            readouts:[{k:"Inflación hoy",v:pct(pts[0][1],1)},{k:"En 2 años",v:pct(fin,1)},
+              {k:"Desvío de la meta",v:fmt(fin-2,1)+" pp"},
+              {k:"Convergencia",v: Math.abs(fin-2)<0.4? "razonable":"insuficiente"}]
+          };
+        }
+      });
+    },
+    check:{ q:"La inflación total sube por un alza del petróleo, pero la subyacente y los breakevens a 5 años siguen estables. La reacción esperada del banco central es:",
+      options:["Subir la tasa de inmediato para frenar el alza.","Mantener la postura y vigilar que no contagie a las expectativas.","Recortar la tasa para compensar la pérdida de poder adquisitivo.","Intervenir en el mercado cambiario."],
+      answer:1,
+      explain:"Un choque de oferta transitorio con expectativas ancladas normalmente se tolera, porque la política monetaria actúa con rezago y responder a él costaría actividad sin efecto sobre la tendencia. La vigilancia está en los efectos de segunda vuelta." }
+  },
+  {
+    t:"Política monetaria y tasa neutral",
+    kicker:"Lección 3 · De la lectura macro a la tasa de política",
+    body:
+      '<p>Una regla de Taylor resume cómo un banco central con meta de inflación ajusta su tasa: parte de una tasa nominal neutral y la sube cuando la inflación supera la meta o la economía opera por encima de su potencial. No es una receta mecánica, pero ordena la discusión y permite contrastar si la postura actual es restrictiva o expansiva.</p>'+
+      '<div class="formula">i = r* + π + 0,5 × (π − π*) + 0,5 × brecha</div>'+
+      '<p>La <strong>tasa neutral</strong> (r*) es la tasa real que ni estimula ni frena la economía. Tampoco se observa, se estima, y su nivel es uno de los debates más relevantes del mercado: revisar r* medio punto cambia la valoración de toda la curva larga.</p>'+
+      '<p>Para el portafolio, lo que importa no es la decisión de la próxima reunión sino la <strong>trayectoria esperada</strong> y, sobre todo, la diferencia entre esa trayectoria y la que ya está incorporada en los precios de mercado. Se gana o se pierde frente a lo descontado, no frente a lo que ocurre.</p>',
+    keys:["La regla de Taylor ordena la lectura de la postura monetaria.","r* no se observa; su estimación mueve la curva larga.","La tasa real = tasa nominal − inflación esperada.","El portafolio se posiciona frente a lo que ya descuenta el mercado."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Regla de Taylor: tasa sugerida frente a la tasa vigente",
+        hint:"Compara la prescripción de la regla con una tasa de política de 4,00%",
+        controls:[
+          {id:"ma3p",label:"Inflación observada",min:0,max:8,step:.1,val:2.6,fmt:function(v){return pct(v,1)}},
+          {id:"ma3b",label:"Brecha del producto",min:-4,max:4,step:.1,val:-0.3,fmt:function(v){return fmt(v,1)+" pp"}},
+          {id:"ma3r",label:"Tasa neutral real (r*)",min:-1,max:3,step:.1,val:0.8,fmt:function(v){return pct(v,1)}}
+        ],
+        render:function(v){
+          var actual=4.00;
+          var taylor = v.ma3r + v.ma3p + 0.5*(v.ma3p-2) + 0.5*v.ma3b;
+          var pts=[], b=v.ma3b, p=v.ma3p;
+          for(var q=0;q<=8;q++){
+            pts.push([q, v.ma3r + p + 0.5*(p-2) + 0.5*b]);
+            p = p*0.82 + 2*0.18; b = b*0.85;
+          }
+          var real = actual - v.ma3p;
+          return {
+            svg: lineChart({h:240, xmin:0,xmax:8, ymin:0,ymax:9,
+              xticks:[{v:0,l:"hoy"},{v:4,l:"+1 año"},{v:8,l:"+2 años"}],
+              yticks:ticks(0,9,2,0,"%"),
+              series:[{pts:pts,cls:"ser1",label:"regla de Taylor"},{pts:[[0,actual],[8,actual]],cls:"ser2",label:"tasa vigente",labelAt:[7.5,actual]}],
+              alt:"Tasa sugerida por la regla de Taylor"}),
+            readouts:[{k:"Tasa sugerida hoy",v:pct(taylor,2)},{k:"Tasa vigente",v:pct(actual,2)},
+              {k:"Tasa real vigente",v:pct(real,2)},
+              {k:"Postura",v: actual-taylor>0.4? "restrictiva" : (taylor-actual>0.4? "expansiva":"neutral")}]
+          };
+        }
+      });
+    },
+    check:{ q:"La tasa de política está en 4,00%, la inflación esperada a 12 meses en 2,2% y la tasa neutral real se estima en 0,8%. ¿Cómo se describe la postura?",
+      options:["Expansiva: la tasa real está por debajo de la neutral.","Neutral: la tasa nominal coincide con la neutral nominal.","Restrictiva: la tasa real de 1,8% supera la neutral de 0,8%.","No puede evaluarse sin conocer la brecha del producto."],
+      answer:2,
+      explain:"La comparación relevante es en términos reales: 4,00% − 2,2% = 1,8% de tasa real frente a una neutral de 0,8%. Hay aproximadamente un punto porcentual de restricción, lo que anticipa espacio para recortes si la inflación sigue convergiendo." }
+  },
+  {
+    t:"Condiciones financieras globales",
+    kicker:"Lección 4 · El canal por el que la macro llega a los activos",
+    body:
+      '<p>Las decisiones de política monetaria sólo afectan a la economía real a través de las condiciones financieras: el nivel de las tasas largas, los spreads de crédito, el valor del dólar, los precios de los activos y la disposición de los bancos a prestar. Un banco central puede subir su tasa y, si los spreads se estrechan y las bolsas suben, terminar con condiciones más laxas que antes.</p>'+
+      '<p>El dólar merece atención aparte. Cuando se fortalece, endurece las condiciones financieras del resto del mundo, encarece el financiamiento en dólares y presiona a las economías emergentes, incluidos los precios de las materias primas que exportan.</p>'+
+      '<p>Para el portafolio de reservas esto opera en dos frentes: determina el retorno de los activos en los que está invertido y determina también el entorno en el que el país puede necesitar esas reservas. Ese es el motivo de fondo por el que la liquidez pesa más que la rentabilidad.</p>',
+    keys:["La política monetaria actúa a través de las condiciones financieras.","Un dólar fuerte endurece las condiciones globales.","Los spreads y las bolsas pueden contrarrestar a la tasa de política.","Las reservas se necesitan precisamente cuando las condiciones se tensan."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Índice ilustrativo de condiciones financieras",
+        hint:"Valores positivos indican condiciones más restrictivas que el promedio",
+        controls:[
+          {id:"ma4t",label:"Tasa 10 años EE.UU.",min:1,max:7,step:.1,val:4.3,fmt:function(v){return pct(v,1)}},
+          {id:"ma4s",label:"Spread corporativo",min:60,max:400,step:10,val:110,fmt:function(v){return v+" pb"}},
+          {id:"ma4d",label:"Dólar (índice, base 100)",min:85,max:120,step:1,val:101,fmt:function(v){return fmt(v,0)}}
+        ],
+        render:function(v){
+          function icf(t,s,d){ return 0.45*(t-3.8) + 0.010*(s-110) + 0.055*(d-100); }
+          var now = icf(v.ma4t,v.ma4s,v.ma4d);
+          var bars=[], comps=[["Tasa larga",0.45*(v.ma4t-3.8)],["Spreads",0.010*(v.ma4s-110)],["Dólar",0.055*(v.ma4d-100)]];
+          comps.forEach(function(c,i){ bars.push({x0:i*1+0.25,x1:i*1+0.75,y:c[1],color: c[1]>0?"#8E1F2F":"#0F6B70"}); });
+          return {
+            svg: lineChart({h:230, left:52, xmin:0,xmax:3, ymin:-2,ymax:2, zero:0,
+              xticks:[{v:0.5,l:"Tasa larga"},{v:1.5,l:"Spreads"},{v:2.5,l:"Dólar"}],
+              yticks:ticks(-2,2,1,1),
+              bars:bars, alt:"Contribución de cada componente al índice de condiciones financieras"}),
+            readouts:[{k:"Índice",v:(now>0?"+":"")+fmt(now,2)},
+              {k:"Lectura",v: now>0.4? "restrictivas" : (now<-0.4? "laxas":"neutrales")},
+              {k:"Componente dominante",v: comps.slice().sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1]);})[0][0]},
+              {k:"Efecto sobre emergentes",v: v.ma4d>105? "adverso":"contenido"}]
+          };
+        }
+      });
+    },
+    check:{ q:"La Reserva Federal sube la tasa 25 pb, pero en el mismo trimestre los spreads se estrechan 40 pb y el dólar se debilita 3%. ¿Qué ocurre con las condiciones financieras?",
+      options:["Se endurecen, porque manda la tasa de política.","Probablemente se relajan, pese al alza de la tasa.","No cambian, porque los efectos se anulan exactamente.","No se puede evaluar sin conocer la inflación."],
+      answer:1,
+      explain:"Los spreads y el dólar pesan en el conjunto de las condiciones financieras. Un alza de 25 pb puede quedar más que compensada, y de hecho eso obliga a veces al banco central a ser más restrictivo de lo que anticipaba." }
+  }]
+},
+{
+  id:"asset-allocation", name:"Asset Allocation", tag:"Asignación de activos",
+  desc:"Cómo se convierte una perspectiva macroeconómica en un portafolio: retorno esperado, riesgo, correlaciones, restricciones y contribución al riesgo.",
+  topics:["Retorno, riesgo y correlación","Diversificación y frontera eficiente","De las perspectivas a la asignación","Restricciones y contribución al riesgo"],
+  lessons:[
+  {
+    t:"Retorno, riesgo y correlación",
+    kicker:"Lección 1 · Las tres piezas de cualquier portafolio",
+    body:
+      '<p>El retorno esperado de un portafolio es simplemente el promedio ponderado de los retornos esperados de sus componentes. El riesgo no funciona así: la volatilidad del portafolio es menor que el promedio ponderado de las volatilidades, salvo que todos los activos estén perfectamente correlacionados.</p>'+
+      '<div class="formula">σ²<sub>p</sub> = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂</div>'+
+      '<p>Esa diferencia es la diversificación, y todo depende de <strong>ρ</strong>, la correlación. Con correlación 1 no hay beneficio alguno; con correlación 0 el riesgo se reduce de forma apreciable; con correlación negativa la reducción es fuerte.</p>'+
+      '<p>La advertencia práctica: las correlaciones no son estables. La relación entre bonos y activos de riesgo cambió de signo cuando el régimen pasó de estar dominado por choques de demanda a estarlo por choques de inflación. Un portafolio construido sobre una correlación histórica puede diversificar mucho menos de lo esperado justo en el momento de tensión.</p>',
+    keys:["El retorno se pondera; el riesgo, no.","La diversificación vive en la correlación.","Correlaciones negativas reducen fuertemente la volatilidad.","Las correlaciones cambian con el régimen macroeconómico."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Volatilidad de un portafolio de dos activos",
+        hint:"Bono soberano (σ 5,5%) y oro (σ 14%)",
+        controls:[
+          {id:"aa1w",label:"Peso del bono soberano",min:0,max:100,step:1,val:70,fmt:function(v){return v+"%"}},
+          {id:"aa1r",label:"Correlación entre ambos",min:-1,max:1,step:.05,val:0.15,fmt:function(v){return fmt(v,2)}},
+          {id:"aa1s",label:"Volatilidad del oro",min:6,max:22,step:.5,val:14,fmt:function(v){return pct(v,1)}}
+        ],
+        render:function(v){
+          var s1=5.5, s2=v.aa1s, r1=4.4, r2=3.0;
+          function vol(w){ w=w/100; return Math.sqrt(w*w*s1*s1+(1-w)*(1-w)*s2*s2+2*w*(1-w)*v.aa1r*s1*s2); }
+          var pts=[]; for(var w=0;w<=100;w+=2) pts.push([w, vol(w)]);
+          var lin=[[0,s2],[100,s1]];
+          var cur=vol(v.aa1w), ret=(v.aa1w/100)*r1+(1-v.aa1w/100)*r2;
+          var best=0,bv=1e9; for(var w2=0;w2<=100;w2++){ if(vol(w2)<bv){bv=vol(w2);best=w2;} }
+          return {
+            svg: lineChart({h:250, xmin:0,xmax:100, ymin:0, ymax:Math.max(16,s2+2),
+              xticks:[{v:0,l:"100% oro"},{v:50,l:"50/50"},{v:100,l:"100% bono"}],
+              yticks:ticks(0,Math.max(16,s2+2),4,0,"%"),
+              series:[{pts:pts,cls:"ser1"},{pts:lin,cls:"ser2",label:"sin diversificación",labelAt:[62,(s1+s2)/2]}],
+              marks:[{x:v.aa1w,y:cur,color:"#B8862F",label:pct(cur,2)},{x:best,y:bv,color:"#0F6B70",label:"mínima varianza"}],
+              alt:"Volatilidad del portafolio según el peso del bono"}),
+            readouts:[{k:"Volatilidad del portafolio",v:pct(cur,2)},
+              {k:"Retorno esperado",v:pct(ret,2)},
+              {k:"Beneficio de diversificar",v:fmt((v.aa1w/100*s1+(1-v.aa1w/100)*s2)-cur,2)+" pp"},
+              {k:"Mínima varianza en",v:best+"% bono"}]
+          };
+        }
+      });
+    },
+    check:{ q:"Dos activos tienen la misma volatilidad de 8%. Si se combinan al 50/50 y su correlación es 0, la volatilidad del portafolio es aproximadamente:",
+      options:["8,0%","5,7%","4,0%","11,3%"],
+      answer:1,
+      explain:"σ = 8 × √0,5 ≈ 5,66%. Con correlación cero, combinar dos activos de igual riesgo reduce la volatilidad en un factor √2 sin sacrificar retorno esperado: es el argumento más simple a favor de diversificar." }
+  },
+  {
+    t:"Diversificación y frontera eficiente",
+    kicker:"Lección 2 · El conjunto de portafolios que vale la pena considerar",
+    body:
+      '<p>Si se dibujan todas las combinaciones posibles de un grupo de activos en el plano riesgo–retorno, se obtiene una nube. El borde superior de esa nube es la <strong>frontera eficiente</strong>: para cada nivel de riesgo, el portafolio con mayor retorno esperado. Cualquier portafolio por debajo de la frontera está asumiendo riesgo que no le está pagando.</p>'+
+      '<p>En la práctica, la optimización sin restricciones produce soluciones extremas y muy sensibles a los supuestos: un cambio pequeño en un retorno esperado puede reasignar el portafolio por completo. Por eso las asignaciones institucionales se construyen con restricciones, con estimaciones prudentes y contrastando los resultados con escenarios.</p>'+
+      '<p>Para reservas internacionales hay además una restricción que no aparece en el plano riesgo–retorno: la liquidez. El portafolio debe poder venderse en volumen y sin descuento en el peor momento del mercado, y eso deja fuera combinaciones que un optimizador consideraría eficientes.</p>',
+    keys:["La frontera eficiente es el borde superior del conjunto de portafolios.","Los optimizadores son muy sensibles a los supuestos de retorno.","Las restricciones son parte del diseño, no un obstáculo.","En reservas, la liquidez es una restricción que domina."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Frontera eficiente con tres clases de activo",
+        hint:"Liquidez (4,1%/0,4%) · soberanos (4,6%/6,2%) · oro (3,0%/14%)",
+        controls:[
+          {id:"aa2r",label:"Correlación soberanos–oro",min:-.6,max:.9,step:.05,val:0.15,fmt:function(v){return fmt(v,2)}},
+          {id:"aa2m",label:"Retorno esperado del oro",min:0,max:8,step:.25,val:3,fmt:function(v){return pct(v,2)}},
+          {id:"aa2w",label:"Tu peso en soberanos largos",min:0,max:100,step:5,val:35,fmt:function(v){return v+"%"}}
+        ],
+        render:function(v){
+          var R=[4.10,4.60,v.aa2m], S=[0.40,6.20,14.0];
+          var C=[[1,0.20,0],[0.20,1,v.aa2r],[0,v.aa2r,1]];
+          function met(w){
+            var r=0,varr=0;
+            for(var i=0;i<3;i++){ r+=w[i]*R[i]; for(var j=0;j<3;j++) varr+=w[i]*w[j]*S[i]*S[j]*C[i][j]; }
+            return [Math.sqrt(Math.max(varr,0)), r];
+          }
+          var cloud=[], frontier={};
+          for(var a=0;a<=100;a+=4) for(var b=0;b+a<=100;b+=4){
+            var w=[a/100,b/100,(100-a-b)/100], m=met(w);
+            cloud.push(m);
+            var key=Math.round(m[0]*4)/4;
+            if(!frontier[key] || frontier[key][1]<m[1]) frontier[key]=m;
+          }
+          var fr = Object.keys(frontier).map(function(k){return frontier[k];}).sort(function(x,y){return x[0]-y[0];});
+          var mine = met([(100-v.aa2w-10)/100, v.aa2w/100, 0.10]);
+          var marks = cloud.filter(function(_,i){ return i%3===0; }).map(function(m){
+            return {x:m[0],y:m[1],r:1.8,color:"rgba(124,136,155,.45)"}; });
+          marks.push({x:mine[0],y:mine[1],r:5,color:"#B8862F",label:"tu portafolio"});
+          return {
+            svg: lineChart({h:280, left:50, xmin:0,xmax:15, ymin:2.5,ymax:6,
+              xticks:ticks(0,15,3,0,"%"), yticks:ticks(2.5,6,0.5,1,"%"),
+              series:[{pts:fr.map(function(m){return [m[0],m[1]];}),cls:"ser1"}],
+              marks:marks, alt:"Frontera eficiente riesgo-retorno"}),
+            readouts:[{k:"Retorno de tu portafolio",v:pct(mine[1],2)},
+              {k:"Volatilidad",v:pct(mine[0],2)},
+              {k:"Retorno por unidad de riesgo",v:fmt((mine[1]-4.10)/Math.max(mine[0],.01),2)},
+              {k:"Distancia a la frontera",v: (function(){ var best=0; fr.forEach(function(m){ if(m[0]<=mine[0]+0.2) best=Math.max(best,m[1]); }); return fmt(Math.max(best-mine[1],0),2)+" pp"; })()}]
+          };
+        }
+      });
+    },
+    check:{ q:"Un portafolio ofrece 4,2% con volatilidad 6%. Otro ofrece 4,2% con volatilidad 4%. ¿Qué se concluye?",
+      options:["El primero es preferible porque tiene más activos.","El segundo domina al primero: mismo retorno con menos riesgo.","Son equivalentes porque el retorno esperado coincide.","Falta conocer la duration para poder compararlos."],
+      answer:1,
+      explain:"El primero está por debajo de la frontera: asume dos puntos adicionales de volatilidad sin recibir retorno a cambio. Ese es exactamente el tipo de ineficiencia que la optimización busca eliminar." }
+  },
+  {
+    t:"De las perspectivas a la asignación",
+    kicker:"Lección 3 · Traducir una visión macro en posiciones",
+    body:
+      '<p>Este es el puente entre los dos módulos anteriores. Una perspectiva macroeconómica no es útil hasta que se expresa como una decisión sobre el portafolio: cuánta duration, qué composición por plazos, cuánto crédito, qué exposición cambiaria.</p>'+
+      '<p>La traducción sigue un orden razonablemente estable. Si se espera una desaceleración con inflación en descenso y recortes de tasa, lo natural es alargar duration, privilegiar soberanos frente a crédito y reducir exposición a monedas procíclicas. Si se espera lo contrario, acortar duration y preferir instrumentos de tasa flotante o plazos cortos.</p>'+
+      '<p>Hay dos disciplinas que conviene no soltar. La primera: la posición se toma frente a lo que el mercado ya descuenta, no frente al escenario en abstracto. La segunda: toda visión debe venir acompañada de la pregunta de qué la invalidaría, y con qué tamaño se está dispuesto a sostenerla si el escenario alternativo se materializa.</p>',
+    keys:["Una perspectiva se vuelve útil cuando se expresa en posiciones.","Desaceleración e inflación a la baja → más duration, menos crédito.","Lo relevante es la diferencia frente a lo descontado.","Toda visión necesita un criterio de invalidación."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Sesgos sugeridos según tu escenario",
+        hint:"Orientación didáctica, no una regla de inversión",
+        controls:[
+          {id:"aa3r",label:"Probabilidad de desaceleración",min:0,max:100,step:5,val:45,fmt:function(v){return v+"%"}},
+          {id:"aa3i",label:"Sorpresa inflacionaria esperada",min:-2,max:2,step:.1,val:-0.3,fmt:function(v){return fmt(v,1)+" pp"}},
+          {id:"aa3m",label:"Recortes ya descontados por el mercado",min:0,max:200,step:10,val:75,fmt:function(v){return v+" pb"}}
+        ],
+        render:function(v){
+          var recortesVista = v.aa3r*1.6 - v.aa3i*40;
+          var sorpresa = recortesVista - v.aa3m;
+          var durTilt = Math.max(-1.5, Math.min(1.5, sorpresa/70));
+          var credTilt = Math.max(-6, Math.min(6, (50-v.aa3r)/9));
+          var fxTilt = Math.max(-5, Math.min(5, (50-v.aa3r)/12));
+          var comps=[["Duration",durTilt],["Crédito",credTilt/4],["Monedas",fxTilt/4]];
+          var bars=comps.map(function(c,i){ return {x0:i+0.25,x1:i+0.75,y:c[1],color:c[1]>0?"#0F6B70":"#8E1F2F"}; });
+          return {
+            svg: lineChart({h:230,left:52, xmin:0,xmax:3, ymin:-2,ymax:2, zero:0,
+              xticks:[{v:0.5,l:"Duration (años)"},{v:1.5,l:"Crédito (×4 pp)"},{v:2.5,l:"Otras monedas (×4 pp)"}],
+              yticks:ticks(-2,2,1,0), bars:bars, alt:"Sesgos sugeridos del portafolio"}),
+            readouts:[{k:"Recortes que implica tu escenario",v:fmt(recortesVista,0)+" pb"},
+              {k:"Frente a lo descontado",v:(sorpresa>0?"+":"")+fmt(sorpresa,0)+" pb"},
+              {k:"Sesgo de duration",v:(durTilt>0?"+":"")+fmt(durTilt,2)+" años"},
+              {k:"Sesgo de crédito",v:(credTilt>0?"+":"")+fmt(credTilt,1)+" pp"}]
+          };
+        }
+      });
+    },
+    check:{ q:"Esperas cuatro recortes de 25 pb en el año. El mercado ya descuenta cinco. ¿Qué posición es coherente?",
+      options:["Alargar duration, porque habrá recortes.","Acortar duration, porque esperas menos recortes que el mercado.","No hacer nada, porque ambos esperan recortes.","Aumentar la posición en crédito."],
+      answer:1,
+      explain:"El precio ya incorpora cinco recortes. Si sólo ocurren cuatro, las tasas de mercado terminan más altas que lo descontado y los bonos de mayor duration pierden valor relativo. La posición se toma contra la expectativa incorporada en los precios." }
+  },
+  {
+    t:"Restricciones y contribución al riesgo",
+    kicker:"Lección 4 · Dónde está realmente el riesgo del portafolio",
+    body:
+      '<p>Un portafolio institucional no se construye en el vacío: existen límites por clase de activo, por calificación crediticia, por emisor, por moneda y por duration, además de un mínimo de liquidez. Esas restricciones expresan el mandato y el apetito de riesgo aprobado, y son la diferencia entre una optimización teórica y una asignación implementable.</p>'+
+      '<p>Dentro de esos límites, la pregunta que ordena la revisión de un portafolio no es cuánto peso tiene cada activo, sino cuánto riesgo aporta. La <strong>contribución al riesgo</strong> reparte la volatilidad total entre las posiciones considerando sus covarianzas. El resultado suele sorprender: una posición del 5% en un activo volátil y poco correlacionado con el resto puede explicar una fracción del riesgo mucho mayor que su peso.</p>'+
+      '<p>Revisar peso y contribución al riesgo lado a lado es la forma más directa de detectar concentraciones que el peso por sí solo esconde.</p>',
+    keys:["Las restricciones expresan el mandato y el apetito de riesgo.","La contribución al riesgo reparte la volatilidad total, no el capital.","Peso y riesgo aportado rara vez coinciden.","Las concentraciones aparecen al comparar ambas medidas."],
+    widget:function(host){
+      makeWidget(host,{
+        title:"Peso frente a contribución al riesgo",
+        hint:"Tres posiciones; el resto se asigna a liquidez",
+        controls:[
+          {id:"aa4a",label:"Soberanos 5–10 años",min:0,max:60,step:5,val:20,fmt:function(v){return v+"%"}},
+          {id:"aa4b",label:"Corporativos grado de inversión",min:0,max:30,step:2,val:10,fmt:function(v){return v+"%"}},
+          {id:"aa4c",label:"Oro",min:0,max:20,step:1,val:5,fmt:function(v){return v+"%"}}
+        ],
+        render:function(v){
+          var w=[0,0,v.aa4a,0,v.aa4b,0,v.aa4c];
+          w[0]=Math.max(0,100-v.aa4a-v.aa4b-v.aa4c);
+          var m=portfolioMetrics(w);
+          var idx=[0,2,4,6], names=["Liquidez","Soberanos 5–10a","Corporativos","Oro"];
+          var bars=[];
+          idx.forEach(function(k,i){
+            bars.push({x0:i+0.12,x1:i+0.46,y:w[k],color:"#7C889B",opacity:.75});
+            bars.push({x0:i+0.54,x1:i+0.88,y: m.vol>0? m.rc[k]/m.vol*100:0, color:"#8E1F2F"});
+          });
+          return {
+            svg: lineChart({h:250,left:46, xmin:0,xmax:4, ymin:0,ymax:100, zero:0,
+              xticks:names.map(function(n,i){return {v:i+0.5,l:n};}),
+              yticks:ticks(0,100,25,0,"%"), bars:bars,
+              alt:"Comparación entre peso y contribución al riesgo"}),
+            readouts:[{k:"Volatilidad del portafolio",v:pct(m.vol,2)},
+              {k:"Duration",v:fmt(m.dur,2)},
+              {k:"Riesgo aportado por el oro",v: m.vol>0? pct(m.rc[6]/m.vol*100,0):"0%"},
+              {k:"Peso del oro",v:v.aa4c+"%"}]
+          };
+        }
+      });
+    },
+    check:{ q:"El oro pesa 5% del portafolio pero explica 30% de su volatilidad. ¿Qué indica?",
+      options:["Hay un error de cálculo: la contribución no puede superar al peso.","Es un activo mucho más volátil y poco correlacionado con el resto.","El portafolio está mal diversificado y hay que eliminar el oro.","El oro tiene un retorno esperado demasiado alto."],
+      answer:1,
+      explain:"La contribución al riesgo depende de la volatilidad del activo y de su covarianza con el portafolio, no de su peso. Que difieran es normal; lo importante es que la diferencia sea conocida y deliberada, no una sorpresa." }
+  }]
+}];
+/* ============================================================
+   Render de Aprendizaje
+   ============================================================ */
+function moduleProgress(m){
+  var d=0; m.lessons.forEach(function(_,i){ if(state.lessons[m.id+":"+i]) d++; });
+  return {done:d, total:m.lessons.length, pct: Math.round(d/m.lessons.length*100)};
+}
+function renderModuleGrid(){
+  var g=$("#moduleGrid"); g.innerHTML="";
+  MODULES.forEach(function(m){
+    var p=moduleProgress(m);
+    var a=el("a","card module-card");
+    a.href="#/aprendizaje/"+m.id;
+    a.innerHTML='<div class="tag">'+m.tag+'</div><h3>'+m.name+'</h3><p>'+m.desc+'</p>'+
+      '<ul class="topics">'+m.topics.map(function(t){return '<li>'+t+'</li>';}).join("")+'</ul>'+
+      '<div class="pbar"><i style="width:'+p.pct+'%"></i></div>'+
+      '<div class="pmeta"><span>'+p.done+' de '+p.total+' lecciones</span><span class="mono">'+p.pct+'%</span></div>';
+    g.appendChild(a);
+  });
+}
+var currentModule=null, currentLesson=0;
+function openModule(id, li){
+  var m = MODULES.filter(function(x){return x.id===id;})[0];
+  if(!m){ location.hash="#/aprendizaje"; return; }
+  currentModule=m; currentLesson = Math.min(Math.max(li||0,0), m.lessons.length-1);
+  $("#modTitle").textContent=m.name;
+  $("#modDesc").textContent=m.desc;
+  $("#modCrumb").textContent="› "+m.name;
+  renderLessonList(); renderLesson();
+}
+function renderLessonList(){
+  var host=$("#lessonList"); host.innerHTML="";
+  currentModule.lessons.forEach(function(l,i){
+    var b=el("button",(i===currentLesson?"active":""));
+    b.type="button";
+    b.innerHTML=(i+1)+". "+l.t+(state.lessons[currentModule.id+":"+i]?' <span class="done">✓</span>':"");
+    b.addEventListener("click",function(){ location.hash="#/aprendizaje/"+currentModule.id+"/"+(i+1); });
+    host.appendChild(b);
+  });
+}
+function renderLesson(){
+  var l=currentModule.lessons[currentLesson], host=$("#lessonBody");
+  host.innerHTML='<h2>'+l.t+'</h2><div class="lesson-kicker">'+l.kicker+'</div><div class="prose">'+l.body+'</div>';
+  if(l.keys){
+    var k=el("div","keybox",'<h4>Conceptos clave</h4><ul>'+l.keys.map(function(x){return '<li>'+x+'</li>';}).join("")+'</ul>');
+    host.appendChild(k);
+  }
+  if(l.widget) l.widget(host);
+  if(l.check) makeCheck(host, l.check, function(ok){ markLessonDone(); });
+  var nav=el("div","lesson-nav");
+  var prev=el("button","btn ghost","← Lección anterior"); prev.type="button";
+  if(currentLesson===0) prev.disabled=true;
+  prev.addEventListener("click",function(){ location.hash="#/aprendizaje/"+currentModule.id+"/"+currentLesson; });
+  var nextLabel = currentLesson<currentModule.lessons.length-1 ? "Siguiente lección →" : "Volver a los módulos";
+  var next=el("button","btn",nextLabel); next.type="button";
+  next.addEventListener("click",function(){
+    markLessonDone();
+    if(currentLesson<currentModule.lessons.length-1) location.hash="#/aprendizaje/"+currentModule.id+"/"+(currentLesson+2);
+    else location.hash="#/aprendizaje";
+  });
+  nav.appendChild(prev); nav.appendChild(next);
+  host.appendChild(nav);
+  if(host.scrollIntoView) host.scrollIntoView({block:"start", behavior:"smooth"});
+}
+function markLessonDone(){
+  var key=currentModule.id+":"+currentLesson;
+  if(!state.lessons[key]){ state.lessons[key]=true; save(); renderLessonList(); renderHomeStats(); }
+}
+
+/* ============================================================
+   PRÁCTICA
+   ============================================================ */
+function miniCurve(){
+  return lineChart({h:190,w:520, xmin:0,xmax:30, ymin:3,ymax:5.4,
+    xticks:[{v:2,l:"2a"},{v:5,l:"5a"},{v:10,l:"10a"},{v:30,l:"30a"}], yticks:ticks(3,5.4,0.6,1,"%"),
+    series:[{pts:nsCurve(4.2,0.9,-1.2,2.5),cls:"ser2",label:"hace 6 meses",labelAt:[24,4.55]},
+            {pts:nsCurve(3.9,-0.5,-0.4,2.5),cls:"ser1",label:"hoy",labelAt:[24,3.95]}],
+    alt:"Dos curvas de rendimientos"});
+}
+function miniInfl(){
+  var tot=[],sub=[];
+  var t=[6.1,5.4,4.6,3.9,3.5,3.3,3.4,3.1,2.8], s=[5.2,4.9,4.6,4.3,4.1,4.0,3.9,3.8,3.7];
+  for(var i=0;i<t.length;i++){ tot.push([i,t[i]]); sub.push([i,s[i]]); }
+  return lineChart({h:190,w:520, xmin:0,xmax:8, ymin:2,ymax:7,
+    xticks:[{v:0,l:"T-8"},{v:4,l:"T-4"},{v:8,l:"actual"}], yticks:ticks(2,7,1,0,"%"),
+    series:[{pts:tot,cls:"ser1",label:"total",labelAt:[7,2.9]},{pts:sub,cls:"ser3",label:"subyacente",labelAt:[6.5,4.1]}],
+    alt:"Inflación total y subyacente"});
+}
+var LEVELS = [
+{ name:"Principiante", desc:"Vocabulario básico de renta fija y macroeconomía.", questions:[
+  {type:"mc", topic:"Fixed Income", q:"Si el rendimiento exigido a un bono sube, su precio:", options:["Sube","Baja","No cambia","Depende del emisor"], answer:1,
+   explain:"El precio es el valor presente de los flujos: al descontar con una tasa mayor, el valor presente cae."},
+  {type:"tf", topic:"Macro", q:"La inflación subyacente excluye los componentes más volátiles, como alimentos y energía.", answer:true,
+   explain:"Por eso se usa como indicador de la tendencia inflacionaria, mientras la total mide el costo de vida efectivo."},
+  {type:"mc", topic:"Asset Allocation", q:"El objetivo prioritario en la administración de reservas internacionales es:", options:["Maximizar la rentabilidad","Preservar el capital y contar con liquidez","Replicar un índice de acciones","Minimizar el número de operaciones"], answer:1,
+   explain:"El orden es seguridad, liquidez y rentabilidad. La rentabilidad se busca dentro de los límites que los dos primeros criterios permiten."},
+  {type:"mc", topic:"Fixed Income", q:"La duration modificada mide:", options:["Los años que faltan para el vencimiento","La sensibilidad del precio ante cambios en la tasa","La probabilidad de incumplimiento","El cupón promedio del portafolio"], answer:1,
+   explain:"Es el cambio porcentual aproximado del precio ante un movimiento de 100 puntos básicos en el rendimiento."}
+]},
+{ name:"Fácil", desc:"Relaciones entre tasas, precios y política monetaria.", questions:[
+  {type:"mc", topic:"Fixed Income", q:"Un bono con duration 5 cuando la tasa sube 50 pb pierde aproximadamente:", options:["0,5%","2,5%","5,0%","10,0%"], answer:1,
+   explain:"5 × 0,50 = 2,5%. La convexity hace que la pérdida efectiva sea ligeramente menor."},
+  {type:"tf", topic:"Macro", q:"Una curva de rendimientos invertida significa que las tasas de corto plazo superan a las de largo plazo.", answer:true,
+   explain:"Suele reflejar la expectativa de que la postura restrictiva actual terminará dando paso a recortes."},
+  {type:"mc", topic:"Asset Allocation", q:"El beneficio de la diversificación es mayor cuando la correlación entre los activos es:", options:["Cercana a +1","Cercana a 0 o negativa","Exactamente +0,5","Irrelevante"], answer:1,
+   explain:"Cuanto menor la correlación, mayor la reducción de volatilidad para un mismo retorno esperado."},
+  {type:"numeric", topic:"Asset Allocation", q:"Un portafolio invierte 60% a un retorno esperado de 4,5% y 40% a 3,0%. ¿Cuál es su retorno esperado, en porcentaje?", answer:3.9, tol:0.06, unit:"%",
+   explain:"0,6 × 4,5 + 0,4 × 3,0 = 3,90%. El retorno esperado sí es un promedio ponderado; la volatilidad, en cambio, no lo es."}
+]},
+{ name:"Intermedio", desc:"Interpretación de gráficos y lectura de mercado.", questions:[
+  {type:"mc", topic:"Fixed Income", svg:miniCurve, q:"Compara ambas curvas. ¿Qué ocurrió en estos seis meses?", options:["La curva subió de nivel y se empinó","La curva bajó de nivel y se invirtió en el tramo corto","Sólo se movió el tramo largo","No hubo cambios significativos"], answer:1,
+   explain:"Todo el nivel desciende y el tramo corto queda por encima del largo: el mercado descuenta recortes y, al mismo tiempo, una actividad más débil."},
+  {type:"mc", topic:"Macro", svg:miniInfl, q:"La inflación total cae de 6,1% a 2,8% mientras la subyacente baja sólo de 5,2% a 3,7%. ¿Qué lectura es más razonable?", options:["El proceso desinflacionario está completo","Buena parte de la caída viene de componentes volátiles y la tendencia sigue alta","La subyacente está mal medida","El banco central debería recortar de inmediato"], answer:1,
+   explain:"La brecha entre ambas series indica que la desinflación se apoya en energía y alimentos. La parte persistente sigue por encima de la meta, lo que justifica cautela antes de flexibilizar."},
+  {type:"numeric", topic:"Fixed Income", q:"Un bono paga 90 pb de spread y tiene duration 3. ¿Cuántos puntos básicos puede ampliarse el spread en un año antes de anular la ganancia?", answer:30, tol:2, unit:"pb",
+   explain:"90 ÷ 3 = 30 pb. Es la ampliación de equilibrio: más allá de eso, la pérdida de precio supera al carry."},
+  {type:"mc", topic:"Asset Allocation", q:"Al pasar de una asignación con duration 2,0 a otra con duration 4,5, el portafolio:", options:["Reduce su exposición al riesgo de tasa","Aumenta su sensibilidad a movimientos de la curva","Elimina el riesgo de crédito","Mejora su liquidez"], answer:1,
+   explain:"Más duration significa mayor ganancia si las tasas bajan y mayor pérdida si suben. Es la decisión de riesgo más importante de un portafolio de renta fija."}
+]},
+{ name:"Difícil", desc:"Análisis combinado de escenarios y posicionamiento.", questions:[
+  {type:"mc", topic:"Macro", q:"La tasa de política está en 5,25%, la inflación esperada a 12 meses en 2,5% y r* se estima en 0,5%. La postura monetaria es:", options:["Expansiva","Neutral","Restrictiva en unos 225 pb","Imposible de evaluar"], answer:2,
+   explain:"La tasa real es 5,25 − 2,50 = 2,75% frente a una neutral de 0,50%: aproximadamente 225 pb de restricción, lo que anticipa espacio para recortes si la inflación converge."},
+  {type:"mc", topic:"Asset Allocation", q:"Esperas tres recortes de 25 pb; el mercado descuenta cinco. Manteniendo todo lo demás igual, lo coherente es:", options:["Alargar duration de forma agresiva","Acortar duration respecto del portafolio de referencia","Aumentar el peso en crédito de alto rendimiento","No modificar nada"], answer:1,
+   explain:"Los precios ya incorporan más recortes de los que esperas. Si se materializa tu escenario, las tasas quedan más altas que lo descontado y la duration larga pierde valor relativo."},
+  {type:"numeric", topic:"Asset Allocation", q:"Dos activos con volatilidad 10% cada uno y correlación 0 se combinan al 50/50. ¿Cuál es la volatilidad del portafolio, en porcentaje?", answer:7.07, tol:0.25, unit:"%",
+   explain:"σ = 10 × √(0,5² + 0,5²) = 10 × 0,707 ≈ 7,07%. La diferencia frente al 10% es el beneficio de diversificación."},
+  {type:"mc", topic:"Fixed Income", q:"Se anticipa un empinamiento de la curva liderado por la caída del tramo corto. La posición más coherente es:", options:["Concentrar el portafolio en el tramo de 30 años","Aumentar el peso en el tramo de 2 a 3 años","Vender toda la renta fija","Aumentar el crédito de baja calificación"], answer:1,
+   explain:"Si el tramo corto lidera la caída de tasas, ahí está la mayor ganancia de precio. Además, en ese escenario el tramo corto cumple con las restricciones de liquidez sin asumir la volatilidad del tramo largo."}
+]},
+{ name:"Experto", desc:"Casos de decisión con restricciones y contribución al riesgo.", questions:[
+  {type:"mc", topic:"Asset Allocation", q:"Una posición de 4% en un activo explica 28% de la volatilidad del portafolio. El comité debería:", options:["Ignorarlo: su peso es pequeño","Evaluar si esa concentración de riesgo es deliberada y compatible con el mandato","Duplicar la posición para aprovechar el riesgo","Eliminarla de inmediato sin más análisis"], answer:1,
+   explain:"La contribución al riesgo puede superar ampliamente al peso cuando el activo es volátil y poco correlacionado. El problema no es que ocurra, sino que ocurra sin que el comité lo haya decidido."},
+  {type:"mc", topic:"Macro", q:"Choque de oferta energético: inflación total al alza, subyacente estable, breakevens a 5 años estables y actividad debilitándose. La respuesta más probable del banco central es:", options:["Un alza inmediata y agresiva","Mantener la tasa y vigilar los efectos de segunda vuelta","Recortar para sostener la actividad","Modificar la meta de inflación"], answer:1,
+   explain:"Con expectativas ancladas, responder a un choque transitorio costaría actividad sin afectar la tendencia. La vigilancia se concentra en que no contagie a salarios y precios subyacentes."},
+  {type:"mc", topic:"Fixed Income", q:"En un episodio de tensión, los spreads corporativos se amplían 120 pb y la liquidez del mercado secundario se deteriora. Para un portafolio de reservas, el costo principal de una sobreexposición al crédito es:", options:["La pérdida de valoración únicamente","No poder vender en volumen y sin descuento justo cuando se necesitan los recursos","El aumento de la duration","La pérdida de cupones"], answer:1,
+   explain:"En reservas, el riesgo relevante no es sólo la valoración: es la disponibilidad. El crédito se vuelve ilíquido precisamente en el escenario en que el país podría necesitar sus reservas."},
+  {type:"numeric", topic:"Asset Allocation", q:"El portafolio tiene duration 3,2. Se quiere llevar a 2,6 vendiendo un bono de duration 7,0 y comprando liquidez de duration 0,2. ¿Qué porcentaje del portafolio hay que rotar?", answer:8.8, tol:0.6, unit:"%",
+   explain:"Cada punto de peso rotado reduce la duration en (7,0 − 0,2)/100 = 0,068 años. Para bajar 0,6 años se necesita 0,6 ÷ 0,068 ≈ 8,8% del portafolio."}
+]}];
+
+function levelUnlocked(i){
+  if(i===0) return true;
+  var prev = state.quiz[i];
+  return !!prev && prev.score/prev.total >= 0.5;
+}
+function renderPractice(){
+  var totalQ=0, correct=0, done=0;
+  LEVELS.forEach(function(L,i){ var r=state.quiz[i+1]; if(r){ done++; totalQ+=r.total; correct+=r.score; } });
+  var best=0; Object.keys(state.quiz).forEach(function(k){ best=Math.max(best,parseInt(k,10)); });
+  $("#practiceStats").innerHTML =
+    stat("Niveles resueltos", done+" / 5") +
+    stat("Respuestas correctas", correct+" / "+totalQ) +
+    stat("Tasa de acierto", totalQ? Math.round(correct/totalQ*100)+"%":"—") +
+    stat("Nivel alcanzado", best? LEVELS[best-1].name : "—");
+  var host=$("#levelList"); host.innerHTML="";
+  LEVELS.forEach(function(L,i){
+    var r=state.quiz[i+1], open=levelUnlocked(i);
+    var b=el("button","level"); b.type="button"; b.dataset.locked = open?"0":"1";
+    b.innerHTML='<span class="lv">'+(i+1)+'</span>'+
+      '<span><h3>'+L.name+'</h3><p>'+(open? L.desc : "Se abre al aprobar el nivel anterior con al menos la mitad de aciertos.")+'</p></span>'+
+      '<span class="score">'+(r? '<b>'+r.score+'/'+r.total+'</b>último resultado' : (open? '<b>—</b>'+L.questions.length+' preguntas' : '<b>·</b>bloqueado'))+'</span>';
+    if(open) b.addEventListener("click",function(){ location.hash="#/practica/"+(i+1); });
+    host.appendChild(b);
+  });
+  var tk=Object.keys(state.topicErrors);
+  var w=$("#weakList");
+  if(!tk.length){ w.innerHTML='<p class="small" style="margin:0">Resuelve un nivel de práctica y aquí aparecerán los temas donde conviene volver sobre la teoría.</p>'; return; }
+  w.innerHTML = tk.map(function(t){
+    var e=state.topicErrors[t], rate = e.total? Math.round(e.wrong/e.total*100):0;
+    return '<div class="row"><span>'+t+'</span><span class="track"><i style="width:'+rate+'%"></i></span><span class="mono small">'+rate+'%</span></div>';
+  }).join("") + '<p class="small" style="margin:10px 0 0">Porcentaje de respuestas incorrectas por tema.</p>';
+}
+
+/* Motor de quiz */
+var quiz = null;
+function startQuiz(levelIdx){
+  var L=LEVELS[levelIdx];
+  quiz = {L:L, idx:levelIdx, i:0, score:0, answers:[]};
+  $("#quizTitle").textContent = "Nivel "+(levelIdx+1)+" · "+L.name;
+  $("#quizCrumb").textContent = "› "+L.name;
+  renderQuestion();
+}
+function renderQuestion(){
+  var L=quiz.L, q=L.questions[quiz.i], host=$("#quizCard");
+  $("#quizProg").style.width = (quiz.i/L.questions.length*100)+"%";
+  $("#quizCount").textContent = (quiz.i+1)+" / "+L.questions.length;
+  var typeLabel = {mc:"Selección múltiple", tf:"Verdadero o falso", numeric:"Respuesta numérica"}[q.type];
+  host.innerHTML = '<div class="qtype">'+typeLabel+' · '+q.topic+'</div><div class="qtext">'+q.q+'</div>';
+  if(q.svg) host.innerHTML += '<div class="chart-wrap" style="margin-bottom:18px">'+q.svg()+'</div>';
+  var answered=false;
+  function finish(ok, explainExtra){
+    if(answered) return; answered=true;
+    if(ok) quiz.score++;
+    var te = state.topicErrors[q.topic] || {wrong:0,total:0};
+    te.total++; if(!ok) te.wrong++;
+    state.topicErrors[q.topic]=te; save();
+    var fb=el("div","feedback",'<b>'+(ok?"Correcto.":"No es correcto.")+'</b> '+(explainExtra||"")+q.explain);
+    host.appendChild(fb);
+    var nav=el("div","btn-row"); nav.style.marginTop="18px";
+    var nx=el("button","btn", quiz.i<L.questions.length-1? "Siguiente pregunta →":"Ver resultado"); nx.type="button";
+    nx.addEventListener("click", function(){
+      quiz.i++;
+      if(quiz.i<L.questions.length) renderQuestion(); else finishQuiz();
+    });
+    nav.appendChild(nx); host.appendChild(nav);
+  }
+  if(q.type==="mc" || q.type==="tf"){
+    var options = q.type==="tf" ? ["Verdadero","Falso"] : q.options;
+    var answer = q.type==="tf" ? (q.answer? 0:1) : q.answer;
+    var wrap=el("div","opts");
+    options.forEach(function(text,i){
+      var b=el("button","opt"); b.type="button";
+      b.innerHTML='<span class="mk">'+"abcd"[i]+'</span><span>'+text+'</span>';
+      b.addEventListener("click",function(){
+        if(answered) return;
+        $$(".opt",wrap).forEach(function(o,j){ if(j===answer) o.classList.add("ok"); });
+        if(i!==answer) b.classList.add("no");
+        finish(i===answer);
+      });
+      wrap.appendChild(b);
+    });
+    host.appendChild(wrap);
+  } else {
+    var row=el("div","numeric-row");
+    row.innerHTML='<input type="number" step="0.01" id="numAns" placeholder="0.00"><span class="small mono">'+(q.unit||"")+'</span>';
+    var btn=el("button","btn","Comprobar"); btn.type="button";
+    btn.addEventListener("click",function(){
+      if(answered) return;
+      var v=parseFloat($("#numAns").value);
+      if(isNaN(v)){ $("#numAns").focus(); return; }
+      var ok = Math.abs(v-q.answer) <= q.tol;
+      finish(ok, 'La respuesta es <b>'+q.answer+' '+(q.unit||"")+'</b>. ');
+    });
+    host.appendChild(row);
+    var br=el("div","btn-row"); br.style.marginTop="14px"; br.appendChild(btn); host.appendChild(br);
+  }
+}
+function finishQuiz(){
+  var L=quiz.L, total=L.questions.length;
+  state.quiz[quiz.idx+1]={score:quiz.score, total:total, ts:Date.now()};
+  save(); renderHomeStats();
+  $("#quizProg").style.width="100%";
+  var pctv=Math.round(quiz.score/total*100);
+  var msg = pctv>=80? "Dominas el nivel. Puedes avanzar al siguiente."
+          : pctv>=50? "Suficiente para avanzar, pero conviene repasar los temas fallados."
+          : "Vuelve a la sección de Aprendizaje antes de reintentar este nivel.";
+  var next = quiz.idx<4 && pctv>=50;
+  $("#quizCard").innerHTML =
+    '<div class="result-hero"><div class="big">'+quiz.score+'/'+total+'</div>'+
+    '<p class="lede" style="margin:12px auto 0">'+msg+'</p></div>'+
+    '<div class="btn-row" style="justify-content:center;margin-top:20px">'+
+      '<a class="btn ghost" href="#/practica">Volver a los niveles</a>'+
+      (next? '<a class="btn" href="#/practica/'+(quiz.idx+2)+'">Nivel '+(quiz.idx+2)+' · '+LEVELS[quiz.idx+1].name+'</a>' : '<a class="btn" href="#/practica/'+(quiz.idx+1)+'">Reintentar este nivel</a>')+
+    '</div>';
+}
+/* ============================================================
+   RESEARCH — LEO
+   ============================================================ */
+var DOCS = [
+  {id:"wmo", t:"Perspectivas de la economía mundial", m:"Organismo internacional · abr 2026 · 48 pp"},
+  {id:"fed", t:"Comunicado y proyecciones del FOMC", m:"Banco central · mar 2026 · 12 pp"},
+  {id:"gs",  t:"Global Rates Strategy · trimestral", m:"Banco de inversión · feb 2026 · 31 pp"},
+  {id:"bis", t:"Informe trimestral sobre mercados", m:"Organismo internacional · mar 2026 · 64 pp"},
+  {id:"paper", t:"Estimación de la tasa neutral tras la pandemia", m:"Paper académico · 2025 · 27 pp"},
+  {id:"curso", t:"Material del curso · asignación estratégica", m:"Departamento de Política de Inversión · 2026"}
+];
+var LEO_CHIPS = [
+  "¿Qué dicen los reportes sobre la trayectoria de la Fed?",
+  "Compara la visión de crecimiento de los dos organismos internacionales",
+  "Explícame el gráfico de la curva de rendimientos del reporte trimestral",
+  "¿Qué es la tasa neutral y por qué importa para el portafolio?",
+  "¿Qué riesgos identifican los reportes para 2026?"
+];
+var LEO_ANSWERS = [
+  {k:["fed","fomc","tasa de política","recorte","recortes","trayectoria"],
+   a:'<p>Los documentos coinciden en la dirección, pero no en el ritmo. Las proyecciones del FOMC apuntan a un descenso gradual de la tasa a lo largo del año, condicionado a que la inflación subyacente siga convergiendo. El reporte de estrategia de tasas descuenta un recorrido algo más rápido, porque asume un mercado laboral más débil.</p><p>Antes de darte una cifra, piénsalo tú: si el mercado ya descuenta cinco recortes y tu escenario implica tres, ¿en qué dirección deberías ajustar la duration del portafolio?</p>',
+   s:[["fed","Comunicado y proyecciones del FOMC, sección de proyecciones"],["gs","Global Rates Strategy, resumen ejecutivo"]]},
+  {k:["compara","comparación","organismos","crecimiento global","pib"],
+   a:'<p>Las dos proyecciones de crecimiento global se separan menos de medio punto, pero por razones distintas: una atribuye la desaceleración al efecto rezagado de la política monetaria restrictiva, y la otra pone más peso en la debilidad de la inversión y en la fragmentación del comercio.</p><p>Esa diferencia importa para el portafolio: si la desaceleración viene de la política monetaria, se revierte con recortes; si viene de factores estructurales, no. ¿Cuál de las dos lecturas justificaría más duration?</p>',
+   s:[["wmo","Perspectivas de la economía mundial, capítulo 1"],["bis","Informe trimestral, panorama macrofinanciero"]]},
+  {k:["curva","gráfico","rendimientos","pendiente","empinamiento","invertida"],
+   a:'<p>El gráfico compara la curva de tesoros actual con la de seis meses atrás. Dos cosas cambiaron: todo el nivel bajó unos 30 puntos básicos y el tramo de 2 a 5 años bajó más que el de 10 a 30, de modo que la pendiente 10a–2a se volvió menos negativa.</p><p>Eso es un empinamiento liderado por el tramo corto, el patrón típico cuando el mercado empieza a descontar recortes. Fíjate en qué punto de la curva se concentraría la ganancia de precio si ese movimiento continúa.</p>',
+   s:[["gs","Global Rates Strategy, gráfico 4"],["curso","Material del curso, módulo de renta fija"]]},
+  {k:["neutral","r*","tasa neutral"],
+   a:'<p>La tasa neutral (r*) es la tasa de interés real que no estimula ni frena la economía. No se observa: se estima con modelos y con un intervalo de confianza amplio.</p><p>Importa para el portafolio por dos razones. Primero, es el ancla de la parte larga de la curva: revisar r* medio punto cambia la valoración de todos los plazos. Segundo, define si la postura actual es restrictiva; es lo que permite evaluar cuánto espacio de recortes existe.</p><p>El paper de la biblioteca discute si la tasa neutral subió tras la pandemia. ¿Qué implicaría para un portafolio con duration alta que r* fuera medio punto mayor de lo que el mercado asume?</p>',
+   s:[["paper","Estimación de la tasa neutral tras la pandemia, secciones 3 y 5"],["curso","Material del curso, módulo macro"]]},
+  {k:["riesgo","riesgos","escenario adverso","geopolítico"],
+   a:'<p>Los reportes coinciden en cuatro focos: una inflación de servicios que se muestra más persistente de lo previsto, la situación fiscal de las economías avanzadas y su efecto sobre la prima por plazo, la fragmentación del comercio y los riesgos geopolíticos con impacto sobre la energía.</p><p>Para un portafolio de reservas, no todos se traducen igual: algunos afectan el nivel de tasas y otros, la liquidez del mercado. ¿Cuáles de los cuatro afectarían tu capacidad de vender posiciones en un momento de tensión?</p>',
+   s:[["wmo","Perspectivas de la economía mundial, capítulo de riesgos"],["bis","Informe trimestral, sección de vulnerabilidades"]]},
+  {k:["inflación","subyacente","precios"],
+   a:'<p>La lectura común en los documentos es que la desinflación avanzó sobre todo por bienes y energía, mientras la inflación de servicios cede más despacio porque está ligada a los salarios.</p><p>Para trabajarlo tú: compara la trayectoria de la total con la de la subyacente en el informe trimestral. Si la brecha entre ambas se abre, ¿qué te dice sobre cuánto de la caída es transitorio?</p>',
+   s:[["bis","Informe trimestral, sección de precios"],["wmo","Perspectivas de la economía mundial, capítulo 1"]]},
+  {k:["duration","portafolio","asignación","reservas","oro","crédito"],
+   a:'<p>El material del curso plantea la traducción en tres pasos: definir el escenario macro, contrastarlo con lo que el mercado ya descuenta y recién entonces decidir duration, composición por plazos, crédito y exposición cambiaria.</p><p>En reservas hay una restricción previa que domina: la liquidez. Antes de mirar el retorno esperado de una clase de activo, conviene preguntarse si se puede vender en volumen y sin descuento en el peor momento del mercado.</p>',
+   s:[["curso","Material del curso, módulo de asignación estratégica"]]}
+];
+function leoReply(text){
+  var q=text.toLowerCase();
+  var best=null, bestScore=0;
+  LEO_ANSWERS.forEach(function(a){
+    var sc=0; a.k.forEach(function(k){ if(q.indexOf(k)>=0) sc++; });
+    if(sc>bestScore){ bestScore=sc; best=a; }
+  });
+  if(!best){
+    return {a:'<p>No encuentro esa información en los documentos cargados en la biblioteca, así que prefiero no responder de memoria.</p><p>Puedes reformular la pregunta acotándola a uno de los reportes disponibles, o pedirle al equipo que cargue la fuente que necesitas. Si quieres, dime qué concepto estás tratando de entender y lo trabajamos con el material del curso.</p>', s:[]};
+  }
+  return best;
+}
+function leoPush(role, html, sources){
+  var log=$("#leoLog");
+  var m=el("div","msg "+role);
+  m.innerHTML = html;
+  if(sources && sources.length){
+    m.innerHTML += '<div class="src">Fuentes: '+sources.map(function(s){
+      var d=DOCS.filter(function(x){return x.id===s[0];})[0];
+      return '<a href="#/research" title="'+s[1]+'">'+(d?d.t:s[0])+'</a> — '+s[1];
+    }).join(" · ")+'</div>';
+  }
+  log.appendChild(m);
+  log.scrollTop = log.scrollHeight;
+  return m;
+}
+function leoAsk(text){
+  if(!text.trim()) return;
+  leoPush("user", text.replace(/</g,"&lt;"));
+  var t = leoPush("leo", '<span class="typing"><i></i><i></i><i></i></span>');
+  setTimeout(function(){
+    var r = leoReply(text);
+    t.innerHTML = r.a;
+    if(r.s && r.s.length){
+      t.innerHTML += '<div class="src">Fuentes: '+r.s.map(function(s){
+        var d=DOCS.filter(function(x){return x.id===s[0];})[0];
+        return '<a href="#/research">'+(d?d.t:s[0])+'</a> — '+s[1];
+      }).join(" · ")+'</div>';
+    }
+    $("#leoLog").scrollTop = $("#leoLog").scrollHeight;
+  }, 700);
+}
+function initLeo(){
+  $("#docList").innerHTML = DOCS.map(function(d){
+    return '<div class="doc"><div class="t">'+d.t+'</div><div class="m">'+d.m+'</div></div>'; }).join("");
+  $("#leoChips").innerHTML = LEO_CHIPS.map(function(c){ return '<button type="button" class="chip">'+c+'</button>'; }).join("");
+  $$("#leoChips .chip").forEach(function(b){ b.addEventListener("click",function(){ leoAsk(b.textContent); }); });
+  leoPush("leo",'<p>Soy LEO. Trabajo sobre los seis documentos que el equipo cargó en la biblioteca y te digo siempre de dónde sale cada respuesta.</p><p>Puedes pedirme que compare reportes, que te explique un gráfico o que te ayude a entender un concepto. Cuando la pregunta sea parte de un ejercicio, voy a darte pistas antes que la respuesta completa.</p>');
+  $("#leoSend").addEventListener("click", function(){ leoAsk($("#leoInput").value); $("#leoInput").value=""; });
+  $("#leoInput").addEventListener("keydown", function(e){
+    if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); leoAsk(this.value); this.value=""; }
+  });
+}
+/* ============================================================
+   SIMULACIÓN
+   ============================================================ */
+var SIM_VARS = [
+  {id:"v1", t:"Trayectoria esperada de la tasa de política de la Fed", rel:true},
+  {id:"v2", t:"Inflación subyacente y su persistencia", rel:true},
+  {id:"v3", t:"Pendiente de la curva de rendimientos", rel:true},
+  {id:"v4", t:"Nivel de los spreads de crédito frente a su historia", rel:true},
+  {id:"v5", t:"Fortaleza del dólar y condiciones financieras globales", rel:true},
+  {id:"v6", t:"Necesidades de liquidez del portafolio", rel:true},
+  {id:"v7", t:"Resultado trimestral de una empresa tecnológica", rel:false},
+  {id:"v8", t:"Volumen negociado ayer en la bolsa local", rel:false},
+  {id:"v9", t:"Precio de una criptomoneda en los últimos 30 días", rel:false},
+  {id:"v10",t:"Número de reuniones del comité de inversiones en el año", rel:false}
+];
+var SIM_PROJ = [
+  {id:"fed", t:"Tasa de política de la Fed en 12 meses", unit:"%", lo:3.25, hi:4.00, ph:"3.75",
+   ok:"Coherente con una desinflación gradual y una postura que se acerca a la neutralidad sin llegar a ella.",
+   low:"Implica un ciclo de recortes muy agresivo: sería consistente con una recesión, no con la desaceleración del escenario.",
+   high:"Deja la política monetaria claramente restrictiva por un año más, pese a una inflación que converge."},
+  {id:"ust", t:"Rendimiento del tesoro a 10 años en 12 meses", unit:"%", lo:3.50, hi:4.30, ph:"3.90",
+   ok:"Consistente con recortes ya parcialmente incorporados en la parte larga y una prima por plazo que se mantiene.",
+   low:"Supone que el tramo largo cae mucho más de lo que implican los recortes: requeriría una recesión o una caída fuerte de la prima por plazo.",
+   high:"Implica que el tramo largo ignora los recortes; posible si la preocupación fiscal domina, pero conviene justificarlo."},
+  {id:"core", t:"Inflación subyacente de EE.UU. en 12 meses", unit:"%", lo:2.20, hi:3.00, ph:"2.60",
+   ok:"Convergencia gradual hacia la meta, en línea con la desaceleración de la actividad.",
+   low:"Una caída así de rápida sería inusual con servicios todavía presionados por salarios.",
+   high:"Implica que la desinflación se detiene, lo que dejaría poco espacio para los recortes que probablemente estés asumiendo."},
+  {id:"dxy", t:"Índice del dólar en 12 meses (hoy 101)", unit:"", lo:94, hi:102, ph:"98",
+   ok:"Depreciación moderada, coherente con el estrechamiento del diferencial de tasas.",
+   low:"Una caída de esa magnitud exigiría un deterioro fuerte y sostenido del diferencial de tasas.",
+   high:"Un dólar más fuerte endurecería las condiciones financieras globales; revisa si es compatible con tu escenario de recortes."}
+];
+var SIM_CONSTRAINTS = [
+  {t:"Liquidez mínima (instrumentos ≤ 6 meses) ≥ 10%", f:function(w,m){ return w[0]>=10; }},
+  {t:"Corporativos ≤ 15%", f:function(w,m){ return w[4]<=15; }},
+  {t:"Oro ≤ 10%", f:function(w,m){ return w[6]<=10; }},
+  {t:"Exposición fuera del dólar ≤ 20%", f:function(w,m){ return m.fx<=20; }},
+  {t:"Duration del portafolio ≤ 5,0 años", f:function(w,m){ return m.dur<=5.0; }},
+  {t:"La asignación suma 100%", f:function(w,m){ return Math.abs(w.reduce(function(a,b){return a+b;},0)-100)<0.51; }}
+];
+function simScenarioChart(){
+  return lineChart({h:230, xmin:0,xmax:30, ymin:3.4,ymax:5.2,
+    xticks:[{v:2,l:"2a"},{v:5,l:"5a"},{v:10,l:"10a"},{v:20,l:"20a"},{v:30,l:"30a"}],
+    yticks:ticks(3.4,5.2,0.6,1,"%"),
+    series:[{pts:nsCurve(4.35,0.55,-1.4,2.5),cls:"ser2",label:"hace 6 meses",labelAt:[26,4.75]},
+            {pts:nsCurve(4.05,0.05,-0.9,2.5),cls:"ser1",label:"hoy",labelAt:[26,4.1]}],
+    alt:"Curva de tesoros de EE.UU. hoy y hace seis meses"});
+}
+function renderSim(){
+  var host=$("#simBody"), s=state.sim;
+  $$("#simSteps button").forEach(function(b,i){
+    b.classList.toggle("active", i===s.step);
+    b.classList.toggle("done", i<s.step);
+  });
+  host.innerHTML="";
+  if(s.step===0) simStep0(host);
+  else if(s.step===1) simStep1(host);
+  else if(s.step===2) simStep2(host);
+  else simStep3(host);
+}
+function simNav(host, back, next, nextLabel, guard){
+  var nav=el("div","btn-row"); nav.style.marginTop="24px";
+  if(back!=null){ var b=el("button","btn ghost","← Volver"); b.type="button";
+    b.addEventListener("click",function(){ state.sim.step=back; save(); renderSim(); }); nav.appendChild(b); }
+  if(next!=null){ var n=el("button","btn",nextLabel); n.type="button";
+    n.addEventListener("click",function(){ if(guard && !guard()) return; state.sim.step=next; save(); renderSim(); renderHomeStats(); }); nav.appendChild(n); }
+  host.appendChild(nav);
+}
+function simStep0(host){
+  host.innerHTML =
+    '<div class="prose" style="max-width:74ch"><h2>El escenario</h2>'+
+    '<p>Es marzo de 2026. El comité de inversiones se reúne para revisar la asignación estratégica del portafolio de reservas. Esta es la información disponible sobre el entorno macroeconómico y financiero.</p></div>'+
+    '<div class="sc-grid" style="margin:22px 0">'+
+      sc("Crecimiento global","Se proyecta 2,6% para el año, por debajo del 3,1% del año previo. La desaceleración se concentra en economías avanzadas.","2,6%")+
+      sc("Inflación","La subyacente de EE.UU. está en 3,1% y cede con lentitud. Los servicios siguen presionados por salarios.","3,1%")+
+      sc("Política monetaria","La Fed mantiene el rango en 4,25–4,50% con sesgo de recorte. El mercado descuenta 75 pb de recortes en 12 meses.","4,25–4,50%")+
+      sc("Curva de rendimientos","El tesoro a 10 años rinde 4,10%. La pendiente 10a–2a volvió a terreno positivo (+15 pb) tras un año invertida.","+15 pb")+
+      sc("Dólar","El índice del dólar está en 101, con una depreciación de 3% en seis meses conforme se estrecha el diferencial de tasas.","101")+
+      sc("Spreads de crédito","Los corporativos con grado de inversión pagan 105 pb, cerca de los mínimos de los últimos cinco años.","105 pb")+
+      sc("Situación fiscal","Los déficits de las economías avanzadas siguen elevados y la oferta de bonos largos presiona la prima por plazo.","déficit alto")+
+      sc("Riesgos geopolíticos","Tensiones con impacto potencial sobre la energía. Un choque elevaría la inflación total sin modificar la tendencia subyacente.","latentes")+
+    '</div>'+
+    '<div class="card"><div class="widget-head"><h4>Curva de tesoros de EE.UU.</h4><span class="hint">Comparación con hace seis meses</span></div><div class="chart-wrap">'+simScenarioChart()+'</div></div>';
+  var t=el("div"); t.innerHTML='<div class="section-title"><h2>¿Qué información es relevante?</h2><span class="rule"></span></div>'+
+    '<p class="small" style="max-width:66ch">Antes de proyectar nada, selecciona las variables que vas a seguir para tomar esta decisión. Parte del ejercicio consiste en descartar lo que no aporta.</p>';
+  host.appendChild(t);
+  var grid=el("div","checkgrid");
+  SIM_VARS.forEach(function(v){
+    var lab=el("label","cbx"+(state.sim.vars.indexOf(v.id)>=0?" sel":""));
+    lab.innerHTML='<input type="checkbox" '+(state.sim.vars.indexOf(v.id)>=0?"checked":"")+'><span>'+v.t+'</span>';
+    lab.querySelector("input").addEventListener("change",function(){
+      var i=state.sim.vars.indexOf(v.id);
+      if(this.checked){ if(i<0) state.sim.vars.push(v.id); } else if(i>=0) state.sim.vars.splice(i,1);
+      lab.classList.toggle("sel", this.checked); save();
+    });
+    grid.appendChild(lab);
+  });
+  host.appendChild(grid);
+  simNav(host, null, 1, "Continuar al análisis →", function(){
+    if(state.sim.vars.length<3){ alert("Selecciona al menos tres variables antes de continuar."); return false; }
+    return true;
+  });
+}
+function sc(h,p,v){ return '<div class="sc"><div class="h">'+h+'</div><div class="v">'+v+'</div><p>'+p+'</p></div>'; }
+
+function simStep1(host){
+  host.innerHTML='<div class="prose" style="max-width:74ch"><h2>Tus perspectivas</h2>'+
+    '<p>Construye tus proyecciones a doce meses. No se evalúa acertar el número: se evalúa que las cuatro proyecciones sean coherentes entre sí y con el escenario. Si proyectas recortes fuertes, la inflación debería estar convergiendo y el dólar debilitándose.</p></div>';
+  var grid=el("div","grid g2"); grid.style.marginTop="18px";
+  SIM_PROJ.forEach(function(p){
+    var c=el("div","card");
+    c.innerHTML='<h3 style="font-size:15px">'+p.t+'</h3>'+
+      '<div class="numeric-row" style="margin-top:10px"><input type="number" step="0.05" id="proj_'+p.id+'" placeholder="'+p.ph+'" value="'+(state.sim.proj[p.id]!=null?state.sim.proj[p.id]:"")+'"><span class="small mono">'+p.unit+'</span></div>';
+    grid.appendChild(c);
+  });
+  host.appendChild(grid);
+  SIM_PROJ.forEach(function(p){
+    $("#proj_"+p.id).addEventListener("change",function(){
+      var v=parseFloat(this.value); if(!isNaN(v)){ state.sim.proj[p.id]=v; save(); }
+    });
+  });
+  var n=el("div");
+  n.innerHTML='<div class="section-title"><h2>Tu razonamiento</h2><span class="rule"></span></div>'+
+    '<p class="small" style="max-width:68ch">Explica en pocas líneas qué supuestos sostienen tus proyecciones y qué tendría que ocurrir para que las abandones. Este texto acompaña tu propuesta en la revisión del comité.</p>'+
+    '<textarea id="simNotes" placeholder="Mi escenario central supone… El principal riesgo es… Cambiaría de opinión si…">'+(state.sim.notes||"")+'</textarea>';
+  host.appendChild(n);
+  $("#simNotes").addEventListener("input",function(){ state.sim.notes=this.value; save(); });
+  simNav(host, 0, 2, "Continuar a la asignación →", function(){
+    var missing = SIM_PROJ.filter(function(p){ return state.sim.proj[p.id]==null || isNaN(state.sim.proj[p.id]); });
+    if(missing.length){ alert("Completa las cuatro proyecciones antes de continuar."); return false; }
+    if((state.sim.notes||"").trim().length<40){ alert("Escribe al menos un par de líneas justificando tus supuestos."); return false; }
+    return true;
+  });
+}
+function simStep2(host){
+  if(!state.sim.alloc) state.sim.alloc = ASSETS.map(function(a){ return a.ref; });
+  host.innerHTML='<div class="prose" style="max-width:74ch"><h2>Tu asignación estratégica</h2>'+
+    '<p>Parte del portafolio de referencia y desvíate donde tus perspectivas lo justifiquen. Cada movimiento cambia el retorno esperado, la volatilidad, la duration y el reparto del riesgo. Las restricciones del mandato deben cumplirse.</p></div>';
+  var lay=el("div","alloc-layout"); lay.style.marginTop="20px";
+  var left=el("div","card"), right=el("div");
+  ASSETS.forEach(function(a,i){
+    var row=el("div","alloc-row");
+    row.innerHTML='<div class="nm">'+a.name+'<div class="sub">'+a.sub+' · ref '+a.ref+'%</div></div>'+
+      '<div class="sl"><input type="range" id="al_'+a.id+'" min="0" max="60" step="1" value="'+state.sim.alloc[i]+'"></div>'+
+      '<div class="pc" id="pc_'+a.id+'">'+state.sim.alloc[i]+'%</div>';
+    left.appendChild(row);
+  });
+  var tot=el("div"); tot.style.marginTop="14px"; tot.id="allocTotal";
+  left.appendChild(tot);
+  var btns=el("div","btn-row"); btns.style.marginTop="12px";
+  var bn=el("button","btn ghost","Normalizar a 100%"); bn.type="button";
+  var br=el("button","btn ghost","Volver a la referencia"); br.type="button";
+  btns.appendChild(bn); btns.appendChild(br); left.appendChild(btns);
+  right.innerHTML='<div class="card"><h3 style="margin-bottom:10px">Métricas del portafolio</h3><div id="simMetrics"></div>'+
+    '<h4 style="margin:18px 0 8px">Restricciones del mandato</h4><div id="simFlags"></div></div>'+
+    '<div class="card" style="margin-top:16px"><h3 style="margin-bottom:10px">Contribución al riesgo</h3><div id="simRC"></div></div>';
+  lay.appendChild(left); lay.appendChild(right);
+  host.appendChild(lay);
+
+  function read(){ return ASSETS.map(function(a){ return parseFloat($("#al_"+a.id).value); }); }
+  function refresh(){
+    var w=read(); state.sim.alloc=w; save();
+    var m=portfolioMetrics(w), sum=w.reduce(function(x,y){return x+y;},0);
+    ASSETS.forEach(function(a,i){ $("#pc_"+a.id).textContent=w[i]+"%"; });
+    $("#allocTotal").innerHTML='<div class="metric"><span>Total asignado</span><span class="v'+(Math.abs(sum-100)>0.5?" warn":"")+'">'+fmt(sum,0)+'%</span></div>';
+    $("#simMetrics").innerHTML =
+      met("Retorno esperado", pct(m.ret,2)) +
+      met("Volatilidad anual", pct(m.vol,2)) +
+      met("Duration", fmt(m.dur,2)+" años") +
+      met("Exposición fuera del dólar", pct(m.fx,1)) +
+      met("Retorno por unidad de riesgo", fmt(m.sharpe,2)) +
+      met("Pérdida en escenario adverso (95%)", pct(Math.max(m.var95,0),2));
+    $("#simFlags").innerHTML = SIM_CONSTRAINTS.map(function(c){
+      var ok=c.f(w,m);
+      return '<div class="flag '+(ok?"ok":"bad")+'">'+(ok?"✓ ":"✕ ")+c.t+'</div>';
+    }).join("");
+    var bars=[];
+    ASSETS.forEach(function(a,i){
+      bars.push({x0:i+0.12,x1:i+0.46,y:w[i],color:"#7C889B",opacity:.7});
+      bars.push({x0:i+0.54,x1:i+0.88,y: m.vol>0? m.rc[i]/m.vol*100:0, color:a.color});
+    });
+    $("#simRC").innerHTML = '<div class="chart-wrap">'+lineChart({h:230,left:42,w:560, xmin:0,xmax:7, ymin:0,ymax:Math.max(50,Math.ceil(Math.max.apply(null,w)/10)*10), zero:0,
+      xticks:ASSETS.map(function(a,i){ return {v:i+0.5,l:a.name.split(" ")[0]}; }),
+      yticks:ticks(0,Math.max(50,Math.ceil(Math.max.apply(null,w)/10)*10),25,0,"%"), bars:bars,
+      alt:"Peso y contribución al riesgo por activo"})+'</div>'+
+      '<p class="small" style="margin:8px 0 0">Barra gris: peso. Barra de color: porcentaje de la volatilidad total que aporta.</p>';
+  }
+  ASSETS.forEach(function(a){ $("#al_"+a.id).addEventListener("input", refresh); });
+  bn.addEventListener("click",function(){
+    var w=read(), sum=w.reduce(function(x,y){return x+y;},0);
+    if(sum<=0) return;
+    ASSETS.forEach(function(a,i){ $("#al_"+a.id).value=Math.round(w[i]/sum*100); });
+    refresh();
+  });
+  br.addEventListener("click",function(){ ASSETS.forEach(function(a){ $("#al_"+a.id).value=a.ref; }); refresh(); });
+  refresh();
+  simNav(host, 1, 3, "Presentar al comité →", function(){
+    var w=read(), m=portfolioMetrics(w);
+    var bad=SIM_CONSTRAINTS.filter(function(c){ return !c.f(w,m); });
+    if(bad.length){ alert("Tu propuesta no cumple: "+bad.map(function(c){return c.t;}).join(" · ")); return false; }
+    state.sim.submitted=true; save();
+    return true;
+  });
+}
+function met(k,v){ return '<div class="metric"><span>'+k+'</span><span class="v">'+v+'</span></div>'; }
+
+function simStep3(host){
+  var s=state.sim, w=s.alloc||ASSETS.map(function(a){return a.ref;});
+  var m=portfolioMetrics(w), ref=portfolioMetrics(ASSETS.map(function(a){return a.ref;}));
+  var hits=SIM_VARS.filter(function(v){ return v.rel && s.vars.indexOf(v.id)>=0; }).length;
+  var noise=SIM_VARS.filter(function(v){ return !v.rel && s.vars.indexOf(v.id)>=0; }).length;
+  var html='<div class="prose" style="max-width:74ch"><h2>Revisión del comité</h2>'+
+    '<p>Así se ve tu propuesta. El comité no busca el número correcto: busca que el razonamiento se sostenga y que la asignación sea consistente con las perspectivas que presentaste.</p></div>';
+
+  html+='<div class="section-title"><h2>Identificación de variables</h2><span class="rule"></span></div>'+
+    '<div class="card"><p style="color:var(--text-2);font-size:14px;margin-bottom:10px">Seleccionaste '+hits+' de 6 variables relevantes'+(noise? ' e incluiste '+noise+' que no aportan a esta decisión.':' y ninguna irrelevante.')+'</p>'+
+    '<div class="tablewrap"><table><thead><tr><th>Variable</th><th>Tu selección</th><th>Comentario</th></tr></thead><tbody>'+
+    SIM_VARS.map(function(v){
+      var sel=s.vars.indexOf(v.id)>=0;
+      var com = v.rel? (sel?"Correcta: afecta directamente al retorno o al riesgo del portafolio.":"Faltó: es parte del núcleo de la decisión.")
+                     : (sel?"No aporta a una decisión de asignación estratégica de reservas.":"Bien descartada.");
+      return '<tr><td>'+v.t+'</td><td>'+(sel?"sí":"no")+'</td><td>'+com+'</td></tr>';
+    }).join("")+'</tbody></table></div></div>';
+
+  html+='<div class="section-title"><h2>Tus proyecciones</h2><span class="rule"></span></div><div class="card"><div class="tablewrap"><table>'+
+    '<thead><tr><th>Variable</th><th class="num">Tu proyección</th><th class="num">Rango coherente</th><th>Lectura del comité</th></tr></thead><tbody>'+
+    SIM_PROJ.map(function(p){
+      var v=s.proj[p.id], inRange = v>=p.lo && v<=p.hi;
+      var com = inRange? p.ok : (v<p.lo? p.low : p.high);
+      return '<tr><td>'+p.t+'</td><td class="num">'+fmt(v,2)+p.unit+'</td><td class="num">'+fmt(p.lo,2)+'–'+fmt(p.hi,2)+p.unit+'</td><td>'+com+'</td></tr>';
+    }).join("")+'</tbody></table></div>'+
+    '<p class="small" style="margin-top:12px">El rango coherente no es un pronóstico oficial: marca el intervalo en el que las cuatro proyecciones se sostienen entre sí bajo el escenario presentado.</p></div>';
+
+  var fed=s.proj.fed!=null? s.proj.fed : 4.0;
+  var recortesVista=(4.375-fed)*100, sorpresa=recortesVista-75;
+  var durGap=m.dur-ref.dur;
+  var coherente = (sorpresa>25 && durGap>0.2) || (sorpresa<-25 && durGap<-0.2) || (Math.abs(sorpresa)<=25 && Math.abs(durGap)<=0.4);
+  html+='<div class="section-title"><h2>Coherencia entre perspectivas y asignación</h2><span class="rule"></span></div>'+
+    '<div class="grid g2"><div class="card">'+
+      met("Recortes que implica tu proyección", fmt(recortesVista,0)+" pb")+
+      met("Descontado por el mercado", "75 pb")+
+      met("Sorpresa frente al mercado", (sorpresa>0?"+":"")+fmt(sorpresa,0)+" pb")+
+      met("Tu duration vs la referencia", (durGap>0?"+":"")+fmt(durGap,2)+" años")+
+      '<div class="flag '+(coherente?"ok":"bad")+'" style="margin-top:12px">'+
+      (coherente? "La duration de tu portafolio es consistente con la sorpresa de tasas que proyectas."
+                : (sorpresa>25? "Proyectas más recortes que el mercado, pero no alargaste duration: la posición no expresa tu visión."
+                : (sorpresa<-25? "Proyectas menos recortes que el mercado y mantuviste o subiste duration: la posición contradice tu visión."
+                : "Tu proyección de tasas está en línea con lo descontado, pero te alejaste de la duration de referencia. El comité pediría el argumento que sostiene ese desvío.")))+'</div>'+
+    '</div><div class="card">'+
+      met("Retorno esperado", pct(m.ret,2)+"  (ref "+pct(ref.ret,2)+")")+
+      met("Volatilidad", pct(m.vol,2)+"  (ref "+pct(ref.vol,2)+")")+
+      met("Duration", fmt(m.dur,2)+"  (ref "+fmt(ref.dur,2)+")")+
+      met("Fuera del dólar", pct(m.fx,1)+"  (ref "+pct(ref.fx,1)+")")+
+      met("Retorno por unidad de riesgo", fmt(m.sharpe,2)+"  (ref "+fmt(ref.sharpe,2)+")")+
+    '</div></div>';
+
+  var desvios = ASSETS.map(function(a,i){ return {n:a.name, d:w[i]-a.ref}; })
+    .filter(function(x){ return Math.abs(x.d)>=2; })
+    .sort(function(a,b){ return Math.abs(b.d)-Math.abs(a.d); });
+  html+='<div class="section-title"><h2>Desvíos frente al portafolio de referencia</h2><span class="rule"></span></div><div class="card">'+
+    (desvios.length? '<div class="tablewrap"><table><thead><tr><th>Activo</th><th class="num">Desvío</th><th>Qué tendría que sostenerlo</th></tr></thead><tbody>'+
+      desvios.map(function(x){
+        var just = x.d>0? "Una perspectiva explícita que justifique sobreponderar esta posición y el riesgo que aporta."
+                        : "Un argumento sobre por qué el riesgo de esta posición no se paga en tu escenario.";
+        return '<tr><td>'+x.n+'</td><td class="num">'+(x.d>0?"+":"")+fmt(x.d,0)+' pp</td><td>'+just+'</td></tr>';
+      }).join("")+'</tbody></table></div>'
+    : '<p class="small" style="margin:0">Tu propuesta se mantiene muy cerca de la referencia. Es una decisión legítima cuando la convicción es baja, pero conviene decirlo de forma explícita ante el comité.</p>')+'</div>';
+
+  html+='<div class="section-title"><h2>Tu razonamiento</h2><span class="rule"></span></div><div class="card"><p style="white-space:pre-wrap;color:var(--text-2);margin:0">'+
+    (s.notes||"").replace(/</g,"&lt;")+'</p></div>';
+  host.innerHTML=html;
+  simNav(host, 2, null, null);
+  var again=el("div","btn-row"); again.style.marginTop="14px";
+  var b=el("button","btn ghost","Reiniciar la simulación"); b.type="button";
+  b.addEventListener("click",function(){
+    state.sim={step:0,vars:[],proj:{},notes:"",alloc:null,submitted:false}; save(); renderSim(); renderHomeStats();
+  });
+  again.appendChild(b); host.appendChild(again);
+}
+
+/* ============================================================
+   Router
+   ============================================================ */
+var PAGES=["inicio","aprendizaje","modulo","practica","quiz","research","simulacion"];
+function show(id){
+  PAGES.forEach(function(p){ $("#page-"+p).classList.toggle("on", p===id); });
+}
+function setNav(route){
+  $$("#nav a").forEach(function(a){ a.classList.toggle("active", a.dataset.route===route); });
+}
+function route(){
+  var h=(location.hash||"#/inicio").replace(/^#\//,"").split("/");
+  var r=h[0]||"inicio";
+  if(r==="aprendizaje"){
+    setNav("aprendizaje");
+    if(h[1]){ show("modulo"); openModule(h[1], h[2]? parseInt(h[2],10)-1 : 0); }
+    else { renderModuleGrid(); show("aprendizaje"); }
+  } else if(r==="practica"){
+    setNav("practica");
+    if(h[1]){ var i=parseInt(h[1],10)-1;
+      if(i>=0 && i<LEVELS.length && levelUnlocked(i)){ show("quiz"); startQuiz(i); }
+      else { location.hash="#/practica"; return; }
+    } else { renderPractice(); show("practica"); }
+  } else if(r==="research"){ setNav("research"); show("research"); }
+  else if(r==="simulacion"){ setNav("simulacion"); show("simulacion"); renderSim(); }
+  else { setNav("inicio"); renderHomeStats(); show("inicio"); renderHero(); }
+  window.scrollTo({top:0, behavior:"instant"});
+}
+window.addEventListener("hashchange", route);
+
+/* Init */
+load();
+initLeo();
+renderModuleGrid();
+renderHomeStats();
+$("#resetBtn").addEventListener("click", function(){
+  if(!confirm("Se borrará tu avance en lecciones, práctica y simulación. ¿Continuar?")) return;
+  state={lessons:{},quiz:{},topicErrors:{},sim:{step:0,vars:[],proj:{},notes:"",alloc:null,submitted:false}};
+  save(); renderModuleGrid(); renderPractice(); renderHomeStats(); renderSim(); location.hash="#/inicio";
+});
+route();
+</script>
+</body>
+</html>
