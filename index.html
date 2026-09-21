@@ -375,21 +375,21 @@ td.num,th.num{text-align:right; font-family:var(--mono)}
         <div class="hero">
           <div class="eyebrow">Plataforma educativa interna</div>
           <h1>Cómo se administran las reservas internacionales del Perú</h1>
-          <p>Un recorrido guiado por el análisis macroeconómico, financiero y de riesgos que sirve de insumo para la asignación estratégica de activos del portafolio de reservas.</p>
+          <p>Esta plataforma brinda un recorrido guiado por el análisis macroeconómico, financiero y de riesgos que sirve de insumo para la asignación estratégica de activos del portafolio de reservas.</p>
           <div class="reserves">
             <div class="rlabel"><span>Composición ilustrativa del portafolio de referencia</span><span class="mono">100%</span></div>
             <div class="rbar" id="heroBar"></div>
             <div class="rlegend" id="heroLegend"></div>
-            <div class="hero-note">Cifras ilustrativas con fines didácticos. No representan la composición efectiva de las reservas del BCRP.</div>
+            <div class="hero-note">Cifras ilustrativas con fines didácticos. No representan la composición exacta de las reservas del BCRP.</div>
           </div>
         </div>
 
         <div class="section-title"><h2>¿Quiénes somos?</h2><span class="rule"></span></div>
         <div class="grid g2">
           <div class="prose">
-            <p>El <strong>Departamento de Política de Inversión</strong> forma parte de la Gerencia de Operaciones Internacionales del Banco Central de Reserva del Perú. Nuestro trabajo consiste en estudiar el entorno económico y financiero global para proponer cómo debe estar invertido el portafolio de reservas internacionales.</p>
-            <p>Analizamos el ciclo económico de las principales economías, la trayectoria de la inflación y de la política monetaria, el comportamiento de las curvas de rendimiento, las condiciones financieras, los tipos de cambio y los riesgos que podrían alterar ese escenario. De ese análisis salen las perspectivas sobre las variables que determinan el retorno y el riesgo de cada clase de activo.</p>
-            <p>Ese diagnóstico se traduce en una <strong>asignación estratégica de activos</strong>: qué proporción del portafolio se invierte en cada tipo de instrumento, con qué duración, en qué monedas y bajo qué límites de riesgo. Las reservas se administran con tres criterios en este orden: seguridad, liquidez y, sólo después, rentabilidad.</p>
+            <p>El <strong>Departamento de Política de Inversión</strong> forma parte de la Gerencia de Operaciones Internacionales del Banco Central de Reserva del Perú. Nuestro trabajo consiste en estudiar el entorno económico y financiero global para proponer cómo debe estar invertido el portafolio de referencia de reservas internacionales.</p>
+            <p>Analizamos el ciclo económico de las principales economías, la trayectoria de la inflación y de la política monetaria, el comportamiento de las curvas de rendimiento, las condiciones financieras, los tipos de cambio y los riesgos que podrían alterar ese escenario. De ese análisis salen las perspectivas sobre las variables que determinan el retorno y el riesgo de cada clase de activo para nuestro horizonte de inversión.</p>
+            <p>Ese diagnóstico se traduce en una <strong>asignación estratégica de activos (AEA)</strong>: qué proporción del portafolio se invierte en cada tipo de instrumento, con qué duración, en qué monedas y bajo qué límites de riesgo. Las reservas se administran con tres criterios en este orden: seguridad, liquidez y, sólo después, rentabilidad.</p>
           </div>
           <div class="grid" style="gap:14px;align-content:start">
             <div class="card">
@@ -423,7 +423,7 @@ td.num,th.num{text-align:right; font-family:var(--mono)}
       <section class="page" id="page-aprendizaje">
         <div class="page-head">
           <h1>Aprendizaje</h1>
-          <p class="lede">Tres módulos, doce lecciones. Cada lección combina la teoría con un gráfico que puedes manipular y una pregunta para comprobar que el concepto quedó claro.</p>
+          <p class="lede">Recorre los distintos módulos y completa cada una de sus lecciones para dominar la teoría básica para una asignación estratégica de activos eficiente. Al final de cada módulo podrás realizar un Quiz para revisar lo aprendido.</p>
         </div>
         <div class="grid g3" id="moduleGrid"></div>
         <div class="notice">Tu avance se guarda en este navegador. Puedes retomar una lección donde la dejaste.</div>
@@ -469,7 +469,7 @@ td.num,th.num{text-align:right; font-family:var(--mono)}
       <section class="page" id="page-research">
         <div class="page-head">
           <h1>Research</h1>
-          <p class="lede">LEO es el asistente de investigación de la plataforma. Responde a partir de los documentos que el equipo carga en la biblioteca y siempre indica de dónde sacó la información.</p>
+          <p class="lede">LEO es el asistente de investigación de la plataforma. Ha sido entrenado a partir de una gran cantidad de informes y estudios de bancos de inversión para responder a tus dudas sobre escenarios globales pasados (desde 2020) y recientes (hasta diciembre 2026). Puedes utilizarlo para revisar cómo los bancos de inversión formulan sus proyecciones en base a un contexto global particular, cómo se comportan los distintos activos en cada régimen económico, consultar datos específicos, entre otras dudas.</p>
         </div>
         <div class="leo-layout">
           <div>
@@ -485,13 +485,11 @@ td.num,th.num{text-align:right; font-family:var(--mono)}
                 <button class="btn" id="leoSend" type="button">Enviar</button>
               </div>
             </div>
-            <div class="notice">Demostración de la interfaz. En esta versión LEO responde con respuestas preparadas; la búsqueda sobre los documentos reales se conecta en la siguiente etapa.</div>
+            <div class="notice">Fase de demostración de la interfaz. En esta versión LEO responde con respuestas preparadas; la búsqueda sobre los documentos reales se conecta en la siguiente etapa.</div>
           </div>
           <div>
             <h4 style="margin-bottom:10px">Biblioteca</h4>
             <div class="doclist" id="docList"></div>
-            <h4 style="margin:22px 0 8px">Cómo aprovechar a LEO</h4>
-            <p class="small">Pídele que compare dos reportes, que te explique un gráfico o que te guíe con pistas antes de darte la respuesta. Si la pregunta se sale de la biblioteca, te lo dirá.</p>
           </div>
         </div>
       </section>
@@ -500,7 +498,7 @@ td.num,th.num{text-align:right; font-family:var(--mono)}
       <section class="page" id="page-simulacion">
         <div class="page-head">
           <h1>Simulación</h1>
-          <p class="lede">Un comité de inversiones en tres pasos: leer el escenario, construir tus perspectivas y traducirlas en una asignación estratégica de activos.</p>
+          <p class="lede">Tu momento para practicar. Este caso simula un ejecicio de asignación estratégica de activos en 4 pasos: leer y entender el escenario, construir tus perspectivas y traducirlas en una asignación estratégica de activos y responder consultas sobre tus decisiones ante un comité.</p>
         </div>
         <div class="steps" id="simSteps">
           <button type="button" data-step="0"><span class="s">Paso 1</span><span class="l">Escenario</span></button>
